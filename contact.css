@@ -1,0 +1,1239 @@
+/* =========================================
+   Premium Contact Hero (Split Layout)
+========================================= */
+.contact-hero-premium.split-layout { 
+    position: relative;
+    padding: 160px 5% 120px; 
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #05050a;
+}
+
+/* --- Background Grid & Orbs --- */
+.hero-grid-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: 50px 50px;
+    background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    z-index: 0;
+}
+
+.glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.4;
+    z-index: 0;
+    animation: floatOrbs 12s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.orb-1 { width: 350px; height: 350px; background: #00d2ff; top: -10%; left: 10%; }
+.orb-2 { width: 400px; height: 400px; background: #7b2cbf; bottom: -10%; right: 5%; animation-delay: -5s; }
+
+@keyframes floatOrbs {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(60px, -40px) scale(1.2); }
+}
+
+/* --- Layout Grid --- */
+.hero-content-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr; /* Left side slightly larger */
+    gap: 60px;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* --- Left Text Column --- */
+.live-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 13px;
+    color: #a0a0b5;
+    margin-bottom: 30px;
+    backdrop-filter: blur(10px);
+}
+
+.pulse-dot {
+    width: 8px; height: 8px;
+    background: #00ff88;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00ff88;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(0, 255, 136, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
+}
+
+.highlight-text { color: #fff; font-weight: bold; }
+
+.hero-title { 
+    font-size: 60px; 
+    margin-bottom: 25px; 
+    letter-spacing: -2px; 
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.1;
+}
+
+.text-gradient-flow {
+    background: linear-gradient(90deg, #00d2ff, #7b2cbf, #ff007a, #00d2ff);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 5s linear infinite;
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% center; }
+    100% { background-position: 300% center; }
+}
+
+.hero-subtitle { 
+    color: #a0a0b5; 
+    font-size: 18px; 
+    line-height: 1.7;
+    max-width: 500px;
+}
+
+/* --- Right Image Column --- */
+.hero-image-col {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-glow-ring {
+    position: absolute;
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(0, 210, 255, 0.15), transparent 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: 0;
+}
+
+.contact-hero-img {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 1;
+    object-fit: cover;
+}
+
+/* Floating Glass Support Card */
+.floating-contact-card {
+    position: absolute;
+    bottom: -15px; left: -20px;
+    background: rgba(10, 10, 15, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 15px 20px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 2;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.card-icon {
+    font-size: 24px;
+    background: rgba(0, 210, 255, 0.1);
+    padding: 10px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 210, 255, 0.3);
+}
+
+.card-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-text strong { color: #fff; font-size: 15px; }
+.card-text span { color: #a0a0b5; font-size: 12px; margin-top: 3px; }
+
+/* Float Animations */
+.floating-anim { animation: smoothFloat 6s ease-in-out infinite; }
+.float-delay { animation: smoothFloat 5s ease-in-out infinite reverse; }
+
+@keyframes smoothFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* --- Scroll Indicator --- */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 26px;
+    height: 42px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    z-index: 2;
+}
+
+.scroll-indicator span {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 6px;
+    background: #00d2ff;
+    border-radius: 2px;
+    animation: scrollMouse 2s infinite;
+}
+
+@keyframes scrollMouse {
+    0% { transform: translate(-50%, 0); opacity: 1; }
+    100% { transform: translate(-50%, 15px); opacity: 0; }
+}
+
+/* =========================================
+   Mobile Responsiveness
+========================================= */
+@media screen and (max-width: 900px) {
+    .contact-hero-premium.split-layout { 
+        padding: 130px 5% 60px; 
+        text-align: center;
+    }
+    
+    .hero-content-grid {
+        grid-template-columns: 1fr; /* Stack vertically */
+        gap: 50px;
+    }
+    
+    .live-status-badge { margin: 0 auto 25px; } /* Center badge */
+    .hero-title { font-size: 42px; }
+    .hero-subtitle { margin: 0 auto; }
+    
+    .floating-contact-card {
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%); /* Center the floating card on mobile */
+        width: max-content;
+    }
+    
+    .scroll-indicator { display: none; /* Hide scroll indicator to save space */ }
+}
+
+/* =========================================
+   2. Premium Contact Methods Grid
+========================================= */
+.premium-methods-section {
+    padding: 20px 5% 100px;
+    background-color: #05050a;
+    position: relative;
+    z-index: 5;
+}
+
+.section-header {
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 40px;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.section-header p {
+    color: #a0a0b5;
+    font-size: 18px;
+}
+
+.methods-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1150px;
+    margin: 0 auto;
+}
+
+/* --- Base Card Styling --- */
+.method-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 40px 35px;
+    position: relative;
+    backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Bouncy hover */
+    overflow: hidden;
+}
+
+.method-card:hover {
+    transform: translateY(-12px);
+    border-color: rgba(0, 210, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0, 210, 255, 0.05);
+}
+
+/* --- Highlighted Support Card --- */
+.highlight-card {
+    background: linear-gradient(145deg, rgba(0, 210, 255, 0.04), rgba(123, 44, 191, 0.02));
+    border: 1px solid rgba(0, 210, 255, 0.2);
+    transform: scale(1.02);
+    /* Slightly larger */
+}
+
+.highlight-card:hover {
+    transform: scale(1.02) translateY(-12px);
+    border-color: #00d2ff;
+    box-shadow: 0 20px 50px rgba(0, 210, 255, 0.15);
+}
+
+/* Inner glow for the highlighted card */
+.glow-backdrop {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(0, 210, 255, 0.2), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* --- Icon Wrapper & Floating Animations --- */
+.icon-wrapper {
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.method-card:hover .icon-wrapper {
+    background: rgba(0, 210, 255, 0.1);
+    border-color: rgba(0, 210, 255, 0.4);
+}
+
+.glow-icon {
+    background: rgba(0, 210, 255, 0.1);
+    border-color: rgba(0, 210, 255, 0.3);
+    text-shadow: 0 0 15px rgba(0, 210, 255, 0.8);
+}
+
+/* Float Animations for Icons */
+.float-icon {
+    display: block;
+    animation: floatIcon 3s ease-in-out infinite alternate;
+}
+
+.fast-float {
+    animation-duration: 2s;
+}
+
+.delay-float {
+    animation-delay: 1s;
+}
+
+@keyframes floatIcon {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-8px);
+    }
+}
+
+/* --- Typography --- */
+.method-card h3 {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.method-card p {
+    color: #a0a0b5;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    flex-grow: 1;
+    /* Pushes the action link to the bottom consistently */
+}
+
+/* --- Action Links with SVG Arrows --- */
+.action-link {
+    color: #6a6a80;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    width: max-content;
+}
+
+.action-link svg {
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.highlight-link {
+    color: #00d2ff;
+}
+
+/* Hover effects for link and arrow */
+.method-card:hover .action-link {
+    color: #00d2ff;
+}
+
+.method-card:hover .action-link svg {
+    transform: translateX(8px);
+}
+
+/* =========================================
+   Mobile Responsiveness
+========================================= */
+@media (max-width: 900px) {
+    .methods-grid {
+        grid-template-columns: 1fr;
+        /* Stack vertically */
+        gap: 25px;
+        max-width: 450px;
+    }
+
+    .section-header h2 {
+        font-size: 32px;
+    }
+
+    .highlight-card {
+        transform: scale(1);
+        /* Remove desktop scaling so it fits mobile screen perfectly */
+    }
+
+    .highlight-card:hover {
+        transform: translateY(-10px);
+    }
+}
+
+/* =========================================
+   3. Interactive Contact Form
+========================================= */
+.contact-form-section {
+    padding: 60px 5% 100px;
+    background-color: #121226;
+}
+
+.form-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 50px 60px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.form-header h2 {
+    font-size: 36px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.form-header p {
+    color: #a0a0b5;
+    font-size: 16px;
+}
+
+/* --- Input Groups & Grid --- */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 35px;
+}
+
+/* --- Form Fields Base Styling --- */
+.input-group input,
+.input-group textarea,
+.input-group select {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    padding: 15px 0 10px;
+    font-size: 16px;
+    color: #fff;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    outline: none;
+    resize: none;
+}
+
+/* Select element styling */
+.input-group select {
+    color: #a0a0b5;
+    cursor: pointer;
+}
+
+.input-group select option {
+    background: #05050a;
+    color: #fff;
+}
+
+/* Focus & Valid States (Neon Blue Glow) */
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+    border-bottom-color: #00d2ff;
+    box-shadow: 0 10px 10px -10px rgba(0, 210, 255, 0.5);
+}
+
+/* --- Floating Labels Magic Trick --- */
+.input-group label {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    font-size: 16px;
+    color: #a0a0b5;
+    pointer-events: none;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* When input is focused OR has text (placeholder hidden) */
+.input-group input:focus~label,
+.input-group input:not(:placeholder-shown)~label,
+.input-group textarea:focus~label,
+.input-group textarea:not(:placeholder-shown)~label {
+    top: -15px;
+    font-size: 13px;
+    color: #00d2ff;
+    font-weight: 600;
+}
+
+/* --- Validation States --- */
+.error-msg {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    color: #ff3366;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Applied via JS when validation fails */
+.input-group.invalid input,
+.input-group.invalid textarea,
+.input-group.invalid select {
+    border-bottom-color: #ff3366;
+}
+
+.input-group.invalid label {
+    color: #ff3366;
+}
+
+.input-group.invalid .error-msg {
+    opacity: 1;
+}
+
+/* Shake Animation for Invalid Fields */
+.shake {
+    animation: shakeError 0.4s ease-in-out;
+}
+
+@keyframes shakeError {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+}
+
+/* --- Submit Button --- */
+.btn-submit {
+    width: 100%;
+    background: linear-gradient(90deg, #00d2ff, #0099ff);
+    color: #000;
+    padding: 18px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 210, 255, 0.3);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 210, 255, 0.5);
+    background: #fff;
+}
+
+/* Loading Spinner for Submit */
+.loader {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(0, 0, 0, 0.2);
+    border-top: 3px solid #000;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.btn-submit.loading .btn-text {
+    display: none;
+}
+
+.btn-submit.loading .loader {
+    display: block;
+}
+
+/* Success Message Alert */
+.success-alert {
+    display: none;
+    margin-top: 25px;
+    padding: 15px;
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid #00ff88;
+    color: #00ff88;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 600;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   Mobile Responsiveness
+========================================= */
+@media (max-width: 768px) {
+    .form-wrapper {
+        padding: 40px 25px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .form-header h2 {
+        font-size: 30px;
+    }
+}
+
+/* =========================================
+   4. Global Presence Section
+========================================= */
+.global-presence-section {
+    padding: 60px 5% 100px;
+    background-color: #05050a;
+    position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    /* Clean separator from form */
+}
+
+.locations-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1150px;
+    margin: 50px auto 0;
+}
+
+/* --- Location Card Styling --- */
+.location-card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(10px);
+}
+
+.location-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(0, 210, 255, 0.3);
+    box-shadow: 0 15px 40px rgba(0, 210, 255, 0.1);
+    background: linear-gradient(180deg, rgba(0, 210, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+}
+
+/* --- Radar Animation (Tech Map Vibe) --- */
+.radar-container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+/* The solid glowing core */
+.radar-core {
+    width: 16px;
+    height: 16px;
+    background: #00d2ff;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #00d2ff, 0 0 30px #00d2ff;
+    z-index: 2;
+}
+
+/* The expanding radar ring */
+.radar-ping {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid #00d2ff;
+    opacity: 0;
+    animation: radarPulse 2.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+.radar-ping.delay {
+    animation-delay: 1.2s;
+    /* Offsets the animation for APAC so they don't all pulse exactly at the same time */
+}
+
+@keyframes radarPulse {
+    0% {
+        transform: scale(0.2);
+        opacity: 1;
+        border-width: 4px;
+    }
+
+    80% {
+        transform: scale(1.2);
+        opacity: 0;
+        border-width: 1px;
+    }
+
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* --- Typography & Info --- */
+.location-info h3 {
+    font-size: 22px;
+    color: #fff;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.loc-type {
+    color: #00d2ff;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.address {
+    color: #a0a0b5;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
+
+/* --- Server Status Indicator --- */
+.server-status {
+    background: rgba(0, 255, 136, 0.05);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-size: 13px;
+    color: #d1d1e0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #00ff88;
+    box-shadow: 0 0 10px #00ff88;
+}
+
+/* =========================================
+   Mobile Responsiveness
+========================================= */
+@media (max-width: 900px) {
+    .locations-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        max-width: 450px;
+    }
+}
+
+/* =========================================
+   5. Help Center / Documentation
+========================================= */
+.help-center-section {
+    padding: 60px 5%;
+    background-color: #121226;
+}
+
+.help-glass-panel {
+    max-width: 1150px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Left Side Content --- */
+.help-content {
+    flex: 1;
+}
+
+.terminal-icon {
+    font-family: monospace;
+    font-size: 28px;
+    font-weight: 800;
+    color: #00d2ff;
+    margin-bottom: 20px;
+    text-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
+    animation: blinkCursor 1s step-end infinite;
+}
+
+@keyframes blinkCursor {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.help-content h2 {
+    font-size: 36px;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.help-content p {
+    color: #a0a0b5;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+/* Glass Search Bar */
+.mock-search-bar {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 5px 5px 5px 20px;
+    transition: border-color 0.3s ease;
+}
+
+.mock-search-bar:focus-within {
+    border-color: #00d2ff;
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+}
+
+.mock-search-bar input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 15px;
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+}
+
+.mock-search-bar input::placeholder {
+    color: #6a6a80;
+}
+
+.btn-search {
+    background: #00d2ff;
+    color: #000;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-search:hover {
+    background: #fff;
+    transform: translateX(-2px);
+}
+
+/* --- Right Side Links --- */
+.help-links {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.doc-link-card {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 20px 25px;
+    border-radius: 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.doc-link-card:hover {
+    background: rgba(0, 210, 255, 0.05);
+    border-color: rgba(0, 210, 255, 0.3);
+    transform: translateX(10px);
+    /* Slides the entire card right */
+}
+
+.doc-icon {
+    font-size: 24px;
+    margin-right: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+}
+
+.doc-link-card:hover .doc-icon {
+    background: rgba(0, 210, 255, 0.1);
+}
+
+.doc-text {
+    flex: 1;
+}
+
+.doc-text h4 {
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.doc-text span {
+    color: #a0a0b5;
+    font-size: 13px;
+}
+
+.doc-link-card:hover .doc-text h4 {
+    color: #00d2ff;
+}
+
+.arrow {
+    color: #6a6a80;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.doc-link-card:hover .arrow {
+    color: #00d2ff;
+    transform: translateX(5px);
+}
+
+/* =========================================
+   Search Bar Validation States
+========================================= */
+.mock-search-bar.invalid {
+    border-color: #ff3366 !important;
+    /* Red border for error */
+    box-shadow: 0 0 15px rgba(255, 51, 102, 0.2);
+}
+
+.search-error {
+    color: #ff3366;
+    font-size: 13px;
+    margin-top: 10px;
+    margin-left: 10px;
+    display: none;
+    /* Hidden by default */
+    font-weight: 600;
+}
+
+/* Shake Animation (Reuse if you already have it) */
+.shake {
+    animation: shakeError 0.4s ease-in-out;
+}
+
+@keyframes shakeError {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+}
+
+/* =========================================
+   Mobile Responsiveness
+========================================= */
+@media (max-width: 900px) {
+    .help-glass-panel {
+        flex-direction: column;
+        padding: 40px 25px;
+        gap: 40px;
+    }
+
+    .help-content h2 {
+        font-size: 32px;
+    }
+
+    .mock-search-bar {
+        flex-wrap: wrap;
+        /* Search button wraps on very small screens */
+    }
+
+    .btn-search {
+        width: 100%;
+        margin-top: 5px;
+        margin-left: -15px;
+    }
+}
+
+/* =========================================
+   6. Community Links Section
+========================================= */
+.community-section {
+    padding: 80px 5% 100px;
+    background-color: #05050a;
+}
+
+.community-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1100px;
+    margin: 50px auto 0;
+}
+
+/* Base Community Card */
+.comm-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+}
+
+.comm-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #a0a0b5;
+    margin-bottom: 25px;
+    transition: all 0.4s ease;
+}
+
+.comm-card h3 {
+    font-size: 22px;
+    color: #fff;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.comm-card p {
+    color: #a0a0b5;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
+
+.comm-link {
+    color: #6a6a80;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+/* --- Brand Specific Hover States --- */
+
+/* Discord Hover (#5865F2) */
+.discord-card:hover {
+    transform: translateY(-12px);
+    border-color: rgba(88, 101, 242, 0.5);
+    box-shadow: 0 15px 40px rgba(88, 101, 242, 0.15);
+}
+
+.discord-card:hover .comm-icon {
+    background: rgba(88, 101, 242, 0.1);
+    color: #5865F2;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
+}
+
+.discord-card:hover .comm-link {
+    color: #5865F2;
+    letter-spacing: 0.5px;
+}
+
+/* X (Twitter) Hover (#FFFFFF) */
+.x-card:hover {
+    transform: translateY(-12px);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 15px 40px rgba(255, 255, 255, 0.1);
+}
+
+.x-card:hover .comm-icon {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.x-card:hover .comm-link {
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+/* GitHub Hover (#2ea043 or Neon Green) */
+.github-card:hover {
+    transform: translateY(-12px);
+    border-color: rgba(46, 160, 67, 0.5);
+    box-shadow: 0 15px 40px rgba(46, 160, 67, 0.15);
+}
+
+.github-card:hover .comm-icon {
+    background: rgba(46, 160, 67, 0.1);
+    color: #2ea043;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(46, 160, 67, 0.4);
+}
+
+.github-card:hover .comm-link {
+    color: #2ea043;
+    letter-spacing: 0.5px;
+}
+
+/* =========================================
+   Mobile Responsiveness
+========================================= */
+@media (max-width: 900px) {
+    .community-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        max-width: 400px;
+    }
+}

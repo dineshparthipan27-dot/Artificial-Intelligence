@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Login</title>
+    <link rel="stylesheet" href="login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <a href="index.html" class="back-home">
+        <i class="fa-solid fa-arrow-left"></i> <span> Home</span>
+    </a>
+
+    <div class="auth-container">
+        <div class="auth-glass-card">
+
+             <div class="logo">
+                <img src="./asset/lodo.webp" alt="Company Logo" class="logo-img">
+            </div>
+
+            <div class="tab-buttons">
+                <button class="active" id="loginBtn">Login</button>
+                <button id="signupBtn">Register </button>
+            </div>
+
+            <form id="loginForm">
+                <h2>System Access</h2>
+                <p class="subtitle">Enter credentials to access the neural net</p>
+
+                <select id="loginRole" required>
+                    <option value="">Select Access Level</option>
+                    <option value="admin">Admin </option>
+                    <option value="user">User</option>
+                </select>
+
+                <div class="input-wrapper">
+                    <input type="email" id="loginEmail" placeholder="Operator Email">
+                    <span class="error-msg" id="loginEmailError"></span>
+                </div>
+
+                <div class="password-box">
+                    <input type="password" id="loginPassword" placeholder="Decryption Key (Password)">
+                    <i class="fa-solid fa-eye-slash toggle-password"></i>
+                    <span class="error-msg" id="loginPasswordError"></span>
+                </div>
+
+                <div class="options">
+                    <label class="remember-me">
+                        <input type="checkbox"> Keep Connection Live
+                    </label>
+                    <a href="404.html">Forgot Password</a>
+                </div>
+
+                <button type="submit" class="main-btn">Login</button>
+
+                
+
+                <div class="social-icons">
+                    <a href="404.html"><i class="fab fa-google"></i></a>
+                    <a href="404.html"><i class="fab fa-github"></i></a>
+                </div>
+
+                <p class="bottom-text">
+                    Unregistered Entity? <span id="showSignup">Initialize Node</span>
+                </p>
+            </form>
+
+            <form id="signupForm" class="hidden">
+                <h2>Register Node</h2>
+                <p class="subtitle">Integrate with the collective network</p>
+
+                <select id="signupRole" required>
+                    <option value="">Select Access Level</option>
+                    <option value="admin"> Admin</option>
+                    <option value="user"> User</option>
+                </select>
+
+                <div class="input-wrapper">
+                    <input type="text" id="signupName" placeholder="Entity Designation (Full Name)">
+                    <span class="error-msg" id="signupNameError"></span>
+                </div>
+
+                <div class="input-wrapper">
+                    <input type="email" id="signupEmail" placeholder="Operator Email">
+                    <span class="error-msg" id="signupEmailError"></span>
+                </div>
+
+                <div class="password-box">
+                    <input type="password" id="signupPassword" class="password" placeholder="Decryption Key">
+                    <i class="fa-solid fa-eye-slash toggle-password"></i>
+                    <span class="error-msg" id="signupPasswordError"></span>
+                </div>
+
+                <div class="password-box">
+                    <input type="password" id="signupConfirmPassword" class="password" placeholder="Verify Decryption Key">
+                    <i class="fa-solid fa-eye-slash toggle-password"></i>
+                    <span class="error-msg" id="signupConfirmError"></span>
+                </div>
+
+                <button type="submit" class="main-btn">Generate Pass</button>
+
+                <p class="bottom-text" style="margin-top: 15px;">
+                    Already Integrated? <span id="showLogin">Authenticate Here</span>
+                </p>
+            </form>
+
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

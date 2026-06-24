@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>404 - Page Not Found | AI Machi</title>
+
+    <style>
+        /* =========================================
+           Global Reset & Typography
+        ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #05050a;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Prevent horizontal scroll from glowing orbs */
+            overflow-x: hidden; 
+            /* Use dynamic viewport height for mobile browsers */
+            min-height: 100vh;
+            min-height: 100dvh; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .highlight {
+            color: #00d2ff;
+        }
+
+        /* =========================================
+           404 Error Section
+        ========================================= */
+        .error-section {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px; /* Safe area so the card never touches screen edges */
+        }
+
+        /* --- Ambient Glowing Background --- */
+        .error-glow {
+            position: absolute;
+            width: 50vw;
+            height: 50vw;
+            max-width: 500px;
+            max-height: 500px;
+            filter: blur(100px);
+            border-radius: 50%;
+            z-index: 0;
+            opacity: 0.3;
+            animation: pulseGlow 8s infinite alternate ease-in-out;
+            pointer-events: none; /* Prevents glows from blocking clicks */
+        }
+
+        .glow-blue {
+            top: 5%;
+            left: 10%;
+            background: #00d2ff;
+        }
+
+        .glow-purple {
+            bottom: 5%;
+            right: 10%;
+            background: #7b2cbf;
+            animation-delay: -4s;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); opacity: 0.2; }
+            100% { transform: scale(1.3); opacity: 0.4; }
+        }
+
+        /* --- Glassmorphism Container --- */
+        .error-container {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 50px 40px;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 650px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        /* --- Floating 404 Code --- */
+        .error-code {
+            font-size: clamp(80px, 15vw, 150px); /* Fluid typography */
+            font-weight: 900;
+            margin: 0;
+            line-height: 1;
+            background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: float404 4s ease-in-out infinite alternate;
+            text-shadow: 0 20px 40px rgba(0, 210, 255, 0.2);
+        }
+
+        @keyframes float404 {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-15px); }
+        }
+
+        /* --- Content Typography --- */
+        .error-content h2 {
+            font-size: clamp(24px, 5vw, 36px); /* Fluid typography */
+            margin: 20px 0 15px;
+            font-weight: 800;
+        }
+
+        .error-content p {
+            font-size: 16px;
+            color: #a0a0b5;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+
+        /* --- Action Buttons --- */
+        .error-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 35px;
+        }
+
+        .btn-primary-large,
+        .btn-secondary-large {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: inherit;
+            cursor: pointer;
+            outline: none;
+            text-decoration: none;
+            padding: 16px 30px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-large {
+            background: linear-gradient(90deg, #00d2ff, #0099ff);
+            color: #000;
+            box-shadow: 0 10px 20px rgba(0, 210, 255, 0.3);
+            border: none;
+        }
+
+        .btn-primary-large:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 210, 255, 0.5);
+            background: #fff;
+        }
+
+        .btn-secondary-large {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary-large:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #00d2ff;
+            transform: translateY(-3px);
+        }
+
+        /* --- Quick Links Footer --- */
+        .quick-links {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 25px;
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .quick-links span {
+            color: #6a6a80;
+        }
+
+        .quick-links a {
+            color: #a0a0b5;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .quick-links a:hover {
+            color: #00d2ff;
+        }
+
+        /* =========================================
+           Strict Mobile Overrides (Phones & Tablets)
+        ========================================= */
+        @media screen and (max-width: 600px) {
+            .error-container {
+                padding: 40px 20px;
+                border-radius: 20px;
+            }
+
+            .error-content p {
+                margin-bottom: 25px;
+            }
+
+            /* Stack buttons vertically on small screens */
+            .error-actions {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            /* Make buttons full width for easy tapping */
+            .btn-primary-large,
+            .btn-secondary-large {
+                width: 100%;
+                padding: 18px 20px; /* Slightly taller for thumbs */
+            }
+
+            /* Stack and enlarge quick links for easy tapping */
+            .quick-links {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .quick-links span {
+                margin-bottom: 10px;
+                display: block;
+            }
+
+            .quick-links a {
+                display: block;
+                padding: 12px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .quick-links a:last-child {
+                border-bottom: none;
+            }
+            
+            /* Shrink glows significantly so they don't overpower small screens */
+            .error-glow {
+                filter: blur(60px);
+                opacity: 0.2;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="error-section">
+        <div class="error-glow glow-blue"></div>
+        <div class="error-glow glow-purple"></div>
+
+        <div class="error-container">
+            <h1 class="error-code">404</h1>
+
+            <div class="error-content">
+                <h2>Lost in the <span class="highlight">Neural Network</span></h2>
+                <p>The page you are looking for has been moved, deleted, or perhaps it was just a hallucination by our AI.</p>
+
+                <div class="error-actions">
+                    <a href="index.html" class="btn-primary-large">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right: 8px;">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                        Back to Home
+                    </a>
+
+                    <button onclick="window.history.back()" class="btn-secondary-large">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right: 8px;">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                        Go Back
+                    </button>
+                </div>
+
+                <div class="quick-links">
+                    <span>Quick Links:</span>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="features.html">Features</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

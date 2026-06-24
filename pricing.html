@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing</title>
+    <link rel="stylesheet" href="pricing.css">
+    <link rel="stylesheet" href="Artificial.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <nav class="navbar">
+            <a href="index.html" class="logo-container">
+                <img src="./asset/lodo.webp" alt="Company Logo" class="logo-img">
+            </a>
+
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About </a></li>
+                <li class="nav-item"><a href="features.html" class="nav-link">Features</a></li>
+                <li class="nav-item"><a href="pricing.html" class="nav-link nav-activ">Pricing</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="login.html" class="nav-link btn-contact">Login</a></li>
+            </ul>
+
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="pricing-hero-premium">
+    <div class="pricing-glow glow-1"></div>
+    <div class="pricing-glow glow-2"></div>
+
+    <div class="container pricing-hero-grid">
+        
+        <div class="pricing-text-col" data-aos="fade-right" data-aos-duration="1000">
+            <span class="cyber-badge">Flexible Plans</span>
+
+            <h1 class="hero-title">
+                Scale Your AI Without <br class="mobile-break">
+                <span class="text-gradient-animated">Limits</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                Transparent pricing. No hidden fees. Pay only for what you compute with our high-performance edge network.
+            </p>
+
+            <div class="premium-toggle-wrapper">
+                <span class="toggle-text monthly active-text" id="text-monthly">Monthly</span>
+
+                <label class="premium-switch">
+                    <input type="checkbox" id="billing-toggle">
+                    <span class="switch-track">
+                        <span class="switch-puck"></span>
+                    </span>
+                </label>
+
+                <span class="toggle-text yearly" id="text-yearly">
+                    Annually
+                    <span class="discount-badge pulse-anim">Save 20%</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="pricing-visual-col" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+            <img src="./asset/ro4.webp" alt="AI Computing Scale" class="pricing-main-img floating-anim">
+            
+            <div class="floating-price-card card-top-right float-delay-1">
+                <span class="icon">💎</span> Cost Optimized
+            </div>
+
+            <div class="floating-price-card card-bottom-left float-delay-2">
+                <span class="icon">🛡️</span> Zero Hidden Fees
+            </div>
+        </div>
+
+    </div>
+</section>
+
+   <section class="pricing-tiers-section">
+    <div class="container">
+        <div class="pricing-grid">
+
+            <div class="tier-card" data-aos="fade-up" data-aos-delay="0">
+                <div class="tier-header">
+                    <h3>Starter</h3>
+                    <p>For individuals and indie hackers exploring AI models.</p>
+                </div>
+                <div class="tier-price">
+                    <span class="currency">$</span>
+                    <span class="amount" data-monthly="0" data-yearly="0">0</span>
+                    <span class="period">/mo</span>
+                </div>
+                <ul class="tier-features">
+                    <li><span class="check">✓</span> 10,000 API Calls/mo</li>
+                    <li><span class="check">✓</span> Standard GPT-4o Access</li>
+                    <li><span class="check">✓</span> Community Discord Support</li>
+                    <li class="disabled"><span class="cross">✕</span> Custom Model Fine-tuning</li>
+                </ul>
+                <a href="404.html" class="btn-tier btn-outline">Start Free</a>
+            </div>
+
+            <div class="tier-card popular-tier" data-aos="fade-up" data-aos-delay="100">
+                <div class="shimmer-overlay"></div>
+                <div class="popular-badge">Most Popular</div>
+
+                <div class="tier-header">
+                    <h3>Pro</h3>
+                    <p>For scaling startups and production AI applications.</p>
+                </div>
+                <div class="tier-price">
+                    <span class="currency">$</span>
+                    <span class="amount" data-monthly="49" data-yearly="39">49</span>
+                    <span class="period">/mo</span>
+                </div>
+                <ul class="tier-features">
+                    <li><span class="check check-glow">✓</span> 500,000 API Calls/mo</li>
+                    <li><span class="check check-glow">✓</span> Priority Zero-Queue Access</li>
+                    <li><span class="check check-glow">✓</span> 24/7 Email & Chat Support</li>
+                    <li><span class="check check-glow">✓</span> Advanced Analytics Dashboard</li>
+                </ul>
+                <a href="404.html" class="btn-tier btn-glow">Start 14-Day Trial</a>
+            </div>
+
+            <div class="tier-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="tier-header">
+                    <h3>Enterprise</h3>
+                    <p>Custom infrastructure for global scale AI operations.</p>
+                </div>
+                <div class="tier-price">
+                    <span class="custom-price">Custom</span>
+                </div>
+                <ul class="tier-features">
+                    <li><span class="check">✓</span> Unlimited API Calls</li>
+                    <li><span class="check">✓</span> Custom Model Fine-tuning</li>
+                    <li><span class="check">✓</span> Dedicated Success Manager</li>
+                    <li><span class="check">✓</span> On-Premise Deployment</li>
+                </ul>
+                <a href="404.html" class="btn-tier btn-outline">Contact Sales</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+   <section class="compare-table-premium">
+    <div class="table-bg-visual">
+        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop" alt="Abstract AI Mesh" class="bg-mesh-img floating-slow">
+        <div class="mesh-overlay"></div>
+    </div>
+
+    <div class="container relative-z">
+        
+        <div class="section-header text-center" data-aos="fade-up">
+            <h2>Compare Architectures in <span class="highlight">Detail</span></h2>
+            <p>From indie prototypes to enterprise-grade swarms, see what fits your scale.</p>
+        </div>
+
+        <div class="table-glass-wrapper" data-aos="fade-up" data-aos-delay="100">
+            <table class="matrix-table">
+                <thead>
+                    <tr>
+                        <th>Capabilities</th>
+                        <th>Starter</th>
+                        <th class="pro-col-header">Pro <span class="glow-dot"></span></th>
+                        <th>Enterprise</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr class="category-row">
+                        <td colspan="4">Compute & Processing</td>
+                    </tr>
+                    <tr class="matrix-row">
+                        <td>Context Window</td>
+                        <td data-label="Starter">32k Tokens</td>
+                        <td data-label="Pro" class="pro-col">128k Tokens</td>
+                        <td data-label="Enterprise">Unlimited (RAG)</td>
+                    </tr>
+                    <tr class="matrix-row">
+                        <td>Token Generation Speed</td>
+                        <td data-label="Starter">Standard (~40 t/s)</td>
+                        <td data-label="Pro" class="pro-col">Turbo (~120 t/s)</td>
+                        <td data-label="Enterprise">Dedicated GPU Allocation</td>
+                    </tr>
+                    <tr class="matrix-row">
+                        <td>Multimodal (Vision/Audio)</td>
+                        <td data-label="Starter"><span class="svg-cross"></span></td>
+                        <td data-label="Pro" class="pro-col"><span class="svg-check"></span></td>
+                        <td data-label="Enterprise"><span class="svg-check"></span></td>
+                    </tr>
+
+                    <tr class="category-row">
+                        <td colspan="4">Customization & Agents</td>
+                    </tr>
+                    <tr class="matrix-row">
+                        <td>Vector DB Storage</td>
+                        <td data-label="Starter">1 GB</td>
+                        <td data-label="Pro" class="pro-col">50 GB</td>
+                        <td data-label="Enterprise">Custom Cloud VPC</td>
+                    </tr>
+                    <tr class="matrix-row">
+                        <td>Custom Agent Swarms</td>
+                        <td data-label="Starter"><span class="svg-cross"></span></td>
+                        <td data-label="Pro" class="pro-col">Up to 10 Agents</td>
+                        <td data-label="Enterprise">Unlimited Swarms</td>
+                    </tr>
+                    <tr class="matrix-row">
+                        <td>Model Fine-Tuning</td>
+                        <td data-label="Starter"><span class="svg-cross"></span></td>
+                        <td data-label="Pro" class="pro-col">LoRA & QLoRA</td>
+                        <td data-label="Enterprise">Full Parameter Tuning</td>
+                    </tr>
+
+                    <tr class="category-row">
+                        <td colspan="4">Security & Infrastructure</td>
+                    </tr>
+                    <tr class="matrix-row">
+                        <td>Data Retention Policy</td>
+                        <td data-label="Starter">30 Days</td>
+                        <td data-label="Pro" class="pro-col">Zero Retention</td>
+                        <td data-label="Enterprise">Zero Retention</td>
+                    </tr>
+                    <tr class="matrix-row">
+                        <td>Compliance</td>
+                        <td data-label="Starter">Standard Security</td>
+                        <td data-label="Pro" class="pro-col">SOC2 Type II</td>
+                        <td data-label="Enterprise">SOC2, HIPAA, GDPR</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section>
+
+    <section class="calculator-section">
+        <div class="container">
+
+            <div class="section-header text-center" data-aos="fade-up">
+                <h2>Estimate Your <span class="highlight">Investment</span></h2>
+                <p>Slide to match your projected monthly API requests and see your estimated cost.</p>
+            </div>
+
+            <div class="calc-glass-card" data-aos="zoom-in" data-aos-delay="100">
+
+                <div class="calc-header">
+                    <h3>Monthly API Requests</h3>
+                    <div class="volume-display"><span id="api-volume">500,000</span> Calls</div>
+                </div>
+
+                <div class="slider-container">
+                    <input type="range" id="usage-slider" min="1" max="100" value="5" class="neon-slider">
+
+                    <div class="slider-labels">
+                        <span>100K</span>
+                        <span>5M</span>
+                        <span>10M+</span>
+                    </div>
+                </div>
+
+                <div class="calc-footer">
+                    <div class="plan-indicator">
+                        <p>Recommended Plan:</p>
+                        <h4 id="recommended-plan" class="highlight">Pro Tier</h4>
+                    </div>
+                    <div class="price-estimate">
+                        <p>Estimated Cost</p>
+                        <h2 id="calc-price">$49<span class="period">/mo</span></h2>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="trusted-section">
+        <div class="container text-center">
+
+            <p class="trust-label" data-aos="fade-up">Trusted by innovative teams worldwide</p>
+
+            <div class="trust-marquee" data-aos="fade-up" data-aos-delay="100">
+                <div class="trust-track">
+                    <div class="trust-logo"><span>✦</span> NEXUS</div>
+                    <div class="trust-logo"><span>⬡</span> QUANTUM</div>
+                    <div class="trust-logo"><span>◈</span> VERTEX</div>
+                    <div class="trust-logo"><span>◬</span> AXIOM</div>
+                    <div class="trust-logo"><span>⟡</span> SYNERGY</div>
+
+                    <div class="trust-logo"><span>✦</span> NEXUS</div>
+                    <div class="trust-logo"><span>⬡</span> QUANTUM</div>
+                    <div class="trust-logo"><span>◈</span> VERTEX</div>
+                    <div class="trust-logo"><span>◬</span> AXIOM</div>
+                    <div class="trust-logo"><span>⟡</span> SYNERGY</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+
+            <div class="section-header text-center" data-aos="fade-up">
+                <h2>Frequently Asked <span class="highlight">Questions</span></h2>
+                <p>Everything you need to know about billing, limits, and security.</p>
+            </div>
+
+            <div class="faq-wrapper" data-aos="fade-up" data-aos-delay="100">
+
+                <div class="faq-item">
+                    <a href="404.html" class="faq-question">
+                        What happens if I exceed my monthly API limits?
+                        <span class="faq-icon">+</span>
+                    </a>
+                    <div class="faq-answer">
+                        <p>If you are on the Starter or Pro plan, your requests will be soft-capped. You will receive an
+                            email notification at 80% and 100% usage. To ensure uninterrupted service, you can enable
+                            "Auto-Scale" in your dashboard, which charges a nominal fee of $0.05 per 1,000 extra
+                            requests.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <a href="404.html" class="faq-question">
+                        Is my proprietary data used to train your public models?
+                        <span class="faq-icon">+</span>
+                    </a>
+                    <div class="faq-answer">
+                        <p>Absolutely not. We have a strict zero-data-retention policy for Pro and Enterprise users.
+                            Your inputs and outputs are encrypted and isolated. We never use your proprietary data to
+                            train our foundational models.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <a href="404.html" class="faq-question">
+                        Can I switch between monthly and annual billing?
+                        <span class="faq-icon">+</span>
+                    </a>
+                    <div class="faq-answer">
+                        <p>Yes! You can switch from monthly to annual billing at any time from your account settings.
+                            When you upgrade to annual, the 20% discount will be applied immediately, and your billing
+                            cycle will reset.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <a href="404.html" class="faq-question">
+                        Do you offer a free trial for the Pro plan?
+                        <span class="faq-icon">+</span>
+                    </a>
+                    <div class="faq-answer">
+                        <p>Yes, we offer a 14-day fully-featured free trial for the Pro plan. No credit card is required
+                            to start testing our high-speed APIs and advanced analytics.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <a href="404.html" class="faq-question">
+                        How long does custom model fine-tuning take?
+                        <span class="faq-icon">+</span>
+                    </a>
+                    <div class="faq-answer">
+                        <p>For Pro users, fine-tuning a custom model typically takes between 2 to 6 hours depending on
+                            your dataset size. Enterprise users get dedicated GPU clusters for near-instant training
+                            capabilities.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-cta-section">
+        <div class="container">
+            <div class="cta-glass-panel" data-aos="zoom-in" data-aos-duration="1000">
+
+                <div class="cta-glow-bg"></div>
+
+                <div class="cta-content">
+                    <h2>Ready to Unleash Your <span class="highlight">AI Potential?</span></h2>
+                    <p>Join top engineering teams building next-generation applications with our high-performance
+                        infrastructure. No credit card required.</p>
+
+                    <div class="cta-btn-group">
+                        <a href="404.html" class="btn-primary-large">Start Your Free Trial</a>
+                        <a href="404.html" class="btn-secondary-large">Contact Sales</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+     <footer class="cyber-footer">
+
+        <div class="footer-cta-container" data-aos="zoom-in" data-aos-duration="1000">
+            <div class="footer-cta-box">
+                <div class="cta-text">
+                    <h2>Ready to shape the <span class="highlight">Future?</span></h2>
+                    <p>Join thousands of developers and enterprises building the next generation of AI.</p>
+                </div>
+                <div class="cta-actions">
+                    <a href="404.html" class="btn primary-btn">Start Building Free</a>
+                    <a href="404.html" class="btn secondary-btn">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-main">
+            <div class="footer-grid">
+
+                <div class="footer-brand-col" data-aos="fade-up" data-aos-delay="100">
+                    <a href="index.html" class="logo-container">
+                        <img src="./asset/lodo.webp" alt="Company Logo" class="logo-img">
+                    </a>
+                    <p class="brand-desc">Democratizing artificial intelligence. We build scalable, secure, and
+                        lightning-fast neural networks for modern businesses.</p>
+
+                    <form id="newsletterForm" class="cyber-newsletter">
+                        <input type="email" id="emailInput" placeholder="Subscribe to updates" required>
+                        <button type="submit">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </form>
+                    <div id="formMessage" class="form-message"></div>
+                </div>
+
+                <div class="footer-links-col" data-aos="fade-up" data-aos-delay="200">
+                    <h4>Platform</h4>
+                    <ul>
+                         <li><a href="index.html">Home </a></li>
+                        <li><a href="about.html">About </a></li>
+                        <li><a href="features.html">Features </a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="contact.html">Contact </a></li>
+                      
+                    </ul>
+                </div>
+
+                <div class="footer-links-col" data-aos="fade-up" data-aos-delay="300">
+                    <h4>Company</h4>
+                    <ul>
+                      <li><a href="404.html">Core Features</a></li>
+                        <li><a href="404.html">Pricing Plans</a></li>
+                        <li><a href="404.html">Industry Solutions</a></li>
+                        <li><a href="404.html">API Documentation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-col" data-aos="fade-up" data-aos-delay="400">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="404.html">Terms of Service</a></li>
+                        <li><a href="404.html">Privacy Policy</a></li>
+                        <li><a href="404.html">Security</a></li>
+                        <li><a href="404.html">Cookie Policy</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="bottom-container">
+                <p>&copy; 2026 Stackly. </p>
+                <div class="social-icons">
+                    <a href="404.html" title="Twitter / X">𝕏</a>
+                    <a href="404.html" title="LinkedIn">in</a>
+                    <a href="404.html" title="GitHub">GH</a>
+                    <a href="404.html" title="Discord">DC</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+    // Logic for Highlighting Active Text on Billing Toggle
+    const billingToggle = document.getElementById('billing-toggle');
+    const textMonthly = document.getElementById('text-monthly');
+    const textYearly = document.getElementById('text-yearly');
+
+    billingToggle.addEventListener('change', function() {
+        if (this.checked) {
+            // Yearly is selected
+            textMonthly.classList.remove('active-text');
+            textYearly.classList.add('active-text');
+        } else {
+            // Monthly is selected
+            textYearly.classList.remove('active-text');
+            textMonthly.classList.add('active-text');
+        }
+    });
+</script>
+    <script src="main.js"></script>
+</body>
+
+</html>

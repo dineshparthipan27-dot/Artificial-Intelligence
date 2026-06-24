@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>User</title>
+
+    <!-- Using a clean, modern aerospace font -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            /* Orbital Space Theme Colors */
+            --primary-color: #8B5CF6; /* Vibrant Violet */
+            --primary-light: rgba(139, 92, 246, 0.15);
+            --primary-dark: #5B21B6;
+            --primary-glow: rgba(139, 92, 246, 0.4);
+            
+            --accent-color: #F59E0B; /* Starlight Gold */
+
+            --text-dark: #F8FAFC;
+            --text-muted: #94A3B8;
+            --bg-color: #0B0914; /* Deep Space Black */
+            --sidebar-bg: rgba(15, 12, 29, 0.9);
+            --header-bg: rgba(15, 12, 29, 0.9);
+            --border-color: rgba(139, 92, 246, 0.2);
+            --card-bg: rgba(255, 255, 255, 0.02);
+            
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            /* Dark orbital background */
+            background: linear-gradient(rgba(11, 9, 20, 0.85), rgba(11, 9, 20, 0.95)),
+                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat fixed;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        .sidebar {
+            width: 260px;
+            background-color: var(--sidebar-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1000;
+            position: fixed;
+            height: 100vh;
+            box-shadow: 4px 0 24px rgba(0, 0, 0, 0.6);
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 9, 20, 0.8);
+            z-index: 999;
+            backdrop-filter: blur(5px);
+        }
+
+        .sidebar-overlay.active { display: block; }
+
+        .sidebar-header {
+            padding: 25px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-da {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-dark);
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo-da i { 
+            font-size: 26px; 
+            color: var(--primary-color);
+            filter: drop-shadow(0 0 8px var(--primary-glow));
+        }
+
+        .close-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close-btn:hover { color: var(--primary-color); }
+
+        .sidebar-menu { list-style: none; padding: 20px 0; }
+
+        .menu-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 25px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+        }
+
+        .menu-link i { font-size: 18px; width: 25px; text-align: center; }
+
+        .menu-link:hover, .menu-link.active {
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .sidebar-bottom {
+            padding: 15px 0 25px 0;
+            border-top: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .logout-btn { color: var(--text-muted); }
+        .logout-btn:hover {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+            border-left: 3px solid var(--danger);
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-left: 260px;
+            min-height: 100vh;
+            width: calc(100% - 260px);
+        }
+
+        .top-header {
+            background-color: var(--header-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 998;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .header-left { display: flex; align-items: center; gap: 15px; }
+
+        .menu-toggle {
+            display: none;
+            background: var(--primary-light);
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .greeting h1 {
+            font-size: 22px;
+            color: var(--text-dark);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .welcome-name { color: var(--primary-color); font-weight: 400; font-size: 18px; }
+
+        .user-profile { display: flex; align-items: center; gap: 12px; text-align: right; }
+
+        .user-role {
+            font-size: 12px;
+            color: var(--accent-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            display: block;
+            letter-spacing: 1px;
+        }
+
+        .user-email { font-size: 14px; color: var(--text-dark); font-weight: 500; display: block; }
+
+        .user-avatar i {
+            font-size: 38px;
+            color: var(--primary-color);
+        }
+
+        .view-section {
+            display: none;
+            padding: 30px;
+            animation: fadeIn 0.4s ease-in-out;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .view-section.active { display: flex; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            border-left: 3px solid var(--primary-color);
+            padding-left: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .scroll-anim {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .scroll-anim.show { opacity: 1; transform: translateY(0); }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 0 15px var(--primary-light);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .stat-details h3 {
+            font-size: 26px;
+            margin-bottom: 4px;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .stat-details p {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .content-box {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            width: 100%;
+            backdrop-filter: blur(10px);
+        }
+
+        .two-col-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+
+        .chart-container { position: relative; height: 320px; width: 100%; }
+
+        .table-container { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; min-width: 600px; }
+
+        th, td {
+            padding: 16px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 14px;
+        }
+
+        th {
+            background-color: rgba(0, 0, 0, 0.3);
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .status.safe { background: rgba(16, 185, 129, 0.15); color: var(--success); }
+        .status.warning { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+        .status.critical { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+        .status.active-blue { background: var(--primary-light); color: var(--primary-color); }
+
+        .action-btn {
+            padding: 8px 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: 0.3s;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .main-btn {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 14px 24px;
+            width: 100%;
+            font-size: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .main-btn:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 4px 15px var(--primary-glow);
+            transform: translateY(-2px);
+        }
+
+        .input-group { margin-bottom: 18px; }
+
+        .input-group input, .input-group select, .input-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            outline: none;
+            font-size: 14px;
+            color: var(--text-dark);
+            transition: 0.3s;
+        }
+
+        .input-group input:focus, .input-group select:focus, .input-group textarea:focus {
+            border-color: var(--primary-color);
+            background: rgba(139, 92, 246, 0.05);
+        }
+
+        select option { background: var(--bg-color); color: var(--text-dark); }
+
+        .timeline {
+            margin-top: 20px;
+            border-left: 2px solid var(--border-color);
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .timeline-item { margin-bottom: 25px; position: relative; }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -32px;
+            top: 2px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--bg-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .timeline-item h4 { font-size: 15px; color: var(--text-dark); margin-bottom: 5px; font-weight: 600; }
+        .timeline-item p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+        .error-msg { color: var(--danger); font-size: 12px; margin-top: 6px; display: none; }
+        .input-error { border-color: var(--danger) !important; }
+
+        .success-msg {
+            color: var(--text-dark);
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid var(--success);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            font-weight: 500;
+            display: none;
+            text-align: center;
+        }
+
+        @media (max-width: 992px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.active { transform: translateX(0); }
+            .main-content { margin-left: 0; width: 100%; }
+            .menu-toggle { display: block; }
+            .close-btn { display: block; }
+            .two-col-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 576px) {
+            .top-header { padding: 15px; }
+            .view-section { padding: 15px; gap: 20px; }
+            .user-info { display: none; }
+            .greeting h1 { font-size: 18px; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .stat-card { padding: 20px; }
+            .content-box { padding: 20px; }
+            .chart-container { height: 250px; }
+        }
+
+           a {
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 150px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .logo-da {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo-da i {
+            font-size: 28px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-top">
+                <div class="sidebar-header">
+                      <div class="logo-da">
+                        <img src="./asset/lodo.webp" alt="Company Logo" class="logo-img">
+                    </div>
+                    <button class="close-btn" id="closeSidebar"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <ul class="sidebar-menu">
+                    <li><a class="menu-link active" data-target="dashboard-view"><i class="fa-solid fa-satellite"></i> Mission Control</a></li>
+                    <li><a class="menu-link" data-target="incident-view"><i class="fa-solid fa-rocket"></i> Orbital Logistics</a></li>
+                    <li><a class="menu-link" data-target="team-view"><i class="fa-solid fa-tower-broadcast"></i> Comm Relay</a></li>
+                    <li><a class="menu-link" data-target="shelter-view"><i class="fa-solid fa-meteor"></i> Extraterrestrial Vault</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-bottom">
+                <a href="login.html" class="menu-link logout-btn" id="logoutBtn">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="openSidebar">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="greeting">
+                        <h1 id="page-title">Mission Control <span class="welcome-name"></span></h1>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="user-profile">
+                        <div class="user-info">
+                            <span class="user-role">System User</span>
+                            <span class="user-email">specialist@astra.space</span>
+                        </div>
+                        <div class="user-avatar">
+                            <i class="fa-solid fa-user-astronaut"></i>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- 1. DASHBOARD VIEW (Mission Control) -->
+            <div id="dashboard-view" class="view-section active">
+                <section class="stats-grid scroll-anim">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--primary-light); color: var(--primary-color);">
+                            <i class="fa-solid fa-satellite"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>14</h3>
+                            <p>Satellites Monitored</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(245, 158, 11, 0.15); color: var(--warning);">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>208</h3>
+                            <p>Debris Objects Tracked</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(16, 185, 129, 0.15); color: var(--success);">
+                            <i class="fa-solid fa-gas-pump"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>82%</h3>
+                            <p>Fleet Fuel Reserves</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-box scroll-anim">
+                    <h2 class="section-title">Fleet Telemetry Signal Strength (dBm)</h2>
+                    <div class="chart-container">
+                        <canvas id="deploymentChart"></canvas>
+                    </div>
+                </section>
+            </div>
+
+            <!-- 2. ORBITAL LOGISTICS VIEW (Tasks/Forms) -->
+            <div id="incident-view" class="view-section">
+                <section class="stats-grid scroll-anim">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(245, 158, 11, 0.15); color: var(--warning);">
+                            <i class="fa-solid fa-clipboard-list"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>02</h3>
+                            <p>Pre-Flight Checks</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--primary-light); color: var(--primary-color);">
+                            <i class="fa-solid fa-boxes-stacked"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>05</h3>
+                            <p>Payloads in LEO</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(16, 185, 129, 0.15); color: var(--success);">
+                            <i class="fa-solid fa-earth-americas"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Go</h3>
+                            <p>Ground Control Status</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="two-col-grid">
+                    <section class="content-box scroll-anim">
+                        <h2 class="section-title">Log Trajectory Adjustment</h2>
+                        <form id="incidentForm" novalidate>
+                            <div id="formSuccess" class="success-msg">
+                                <i class="fa-solid fa-circle-check"></i> Burn Sequence Transmitted to Probe!
+                            </div>
+
+                            <div class="input-group">
+                                <input type="text" id="targetInput" placeholder="Enter Satellite Designation (e.g., ASTRA-V1)" required>
+                                <div class="error-msg" id="targetError">Please provide a valid designation.</div>
+                            </div>
+
+                            <div class="input-group">
+                                <select id="propulsionSelect" required>
+                                    <option value="" selected disabled>Select Propulsion Type</option>
+                                    <option value="ion">Ion Thruster (Low Thrust)</option>
+                                    <option value="chemical">Chemical Burn (High Thrust)</option>
+                                    <option value="rcs">RCS Micro-Adjustment</option>
+                                    <option value="nuclear">Nuclear Thermal (Deep Space)</option>
+                                </select>
+                                <div class="error-msg" id="propulsionError">Please select a propulsion method.</div>
+                            </div>
+
+                            <div class="input-group">
+                                <select id="prioritySelect" required>
+                                    <option value="" selected disabled>Select Maneuver Urgency</option>
+                                    <option value="low">Routine Station Keeping</option>
+                                    <option value="medium">Orbital Decay Correction</option>
+                                    <option value="high">Collision Avoidance (Urgent)</option>
+                                </select>
+                                <div class="error-msg" id="priorityError">Please select maneuver urgency.</div>
+                            </div>
+
+                            <div class="input-group">
+                                <textarea id="remarksInput" rows="3" placeholder="Delta-V parameters / Burn duration... (Optional)"></textarea>
+                            </div>
+
+                            <button type="submit" class="action-btn main-btn">
+                                <i class="fa-solid fa-fire"></i> Initiate Burn Protocol
+                            </button>
+                        </form>
+                    </section>
+
+                    <section class="content-box scroll-anim">
+                        <h2 class="section-title">Active Maneuvers</h2>
+                        <ul style="list-style: none;">
+                            <li style="margin-bottom: 20px;">
+                                <div>
+                                    <i class="fa-solid fa-crosshairs" style="color: var(--primary-color); margin-right: 10px; font-size: 18px;"></i>
+                                    <strong style="font-size: 15px;">ASTRA-V1 : Altitude Correction</strong><br>
+                                    <span style="font-size:13px; color:var(--text-muted); padding-left: 30px;">T-Minus 00:14:32 until engine ignition.</span>
+                                </div><br>
+                                <span class="status active-blue">Pending Burn</span>
+                            </li>
+                            <li style="margin-bottom: 20px;">
+                                <div>
+                                    <i class="fa-solid fa-shield-halved" style="color: var(--danger); margin-right: 10px; font-size: 18px;"></i>
+                                    <strong style="font-size: 15px;">PROBE-9 : Debris Avoidance</strong><br>
+                                    <span style="font-size:13px; color:var(--text-muted); padding-left: 30px;">Executing emergency RCS thruster sequence.</span>
+                                </div><br>
+                                <span class="status critical">Executing</span>
+                            </li>
+                            <li>
+                                <div>
+                                    <i class="fa-solid fa-check" style="color: var(--success); margin-right: 10px; font-size: 18px;"></i>
+                                    <strong style="font-size: 15px;">HUBBLE-X : Station Keeping</strong><br>
+                                    <span style="font-size:13px; color:var(--text-muted); padding-left: 30px;">Trajectory verified. Orbit stabilized.</span>
+                                </div><br>
+                                <span class="status safe">Completed</span>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+
+            <!-- 3. COMM RELAY VIEW (Network) -->
+            <div id="team-view" class="view-section">
+                <section class="stats-grid scroll-anim">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(16, 185, 129, 0.15); color: var(--success);">
+                            <i class="fa-solid fa-tower-cell"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>48 ms</h3>
+                            <p>Lunar Network Ping</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--primary-light); color: var(--primary-color);">
+                            <i class="fa-solid fa-download"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>14.2 TB</h3>
+                            <p>Data Downlinked Today</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(245, 158, 11, 0.15); color: var(--warning);">
+                            <i class="fa-solid fa-sun"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Class M</h3>
+                            <p>Solar Flare Interference</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="two-col-grid">
+                    <section class="content-box scroll-anim">
+                        <h2 class="section-title">Deep Space Communication Logs</h2>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h4><i class="fa-solid fa-robot" style="color: var(--success); margin-right:8px;"></i> Curiosity-X Rover</h4>
+                                <p>09:42 UTC | Handshake successful. Receiving batch geological scans from Sector 4.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4><i class="fa-solid fa-satellite" style="color: var(--primary-color); margin-right:8px;"></i> Voyager Legacy</h4>
+                                <p>08:15 UTC | Faint signal detected. Telemetry parsed. Power levels critically low.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4><i class="fa-solid fa-burst" style="color: var(--warning); margin-right:8px;"></i> Solar Observatory</h4>
+                                <p style="color: var(--accent-color); font-weight: 500;">07:30 UTC | CME warning issued. Initiating auto-shielding on LEO satellites.</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- 4. EXTRATERRESTRIAL VAULT VIEW -->
+            <div id="shelter-view" class="view-section">
+                <section class="stats-grid scroll-anim">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--primary-light); color: var(--primary-color);">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>3,402</h3>
+                            <p>Exoplanets Scanned</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(16, 185, 129, 0.15); color: var(--success);">
+                            <i class="fa-solid fa-microscope"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>412 GB</h3>
+                            <p>Raw Rover Telemetry</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(239, 68, 68, 0.15); color: var(--danger);">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Level 5</h3>
+                            <p>Vault Security Status</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-box scroll-anim">
+                    <h2 class="section-title">Captured Space Anomalies & Scans</h2>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>File ID</th>
+                                    <th>Data Category</th>
+                                    <th>Origin Vector</th>
+                                    <th>Size</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong style="color:var(--text-dark);">#SPEC-902A</strong></td>
+                                    <td><i class="fa-solid fa-wave-square" style="color:var(--primary-color);"></i> Spectral Analysis</td>
+                                    <td>Andromeda Quadrant</td>
+                                    <td><span style="font-family: monospace; color: var(--text-muted);">4.2 GB</span></td>
+                                    <td><button onclick="window.location.href = '404.html'" class="action-btn" style="background: var(--primary-light); color: var(--primary-color);">Decrypt</button></td>
+                                </tr>
+                                <tr>
+                                    <td><strong style="color:var(--text-dark);">#GEO-M441</strong></td>
+                                    <td><i class="fa-solid fa-gem" style="color:var(--accent-color);"></i> Soil Composition</td>
+                                    <td>Mars Base Alpha</td>
+                                    <td><span style="font-family: monospace; color: var(--text-muted);">850 MB</span></td>
+                                    <td><button class="action-btn" style="background: var(--primary-light); color: var(--primary-color);">Decrypt</button></td>
+                                </tr>
+                                <tr>
+                                    <td><strong style="color:var(--text-dark);">#IMG-HD09</strong></td>
+                                    <td><i class="fa-solid fa-image" style="color:var(--success);"></i> Deep Field Image</td>
+                                    <td>James Webb V2</td>
+                                    <td><span style="font-family: monospace; color: var(--text-muted);">12.5 GB</span></td>
+                                    <td>
+                                        <button class="action-btn" style="background: var(--primary-light); color: var(--primary-color);">Decrypt</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // Profile Setup
+        const emailValue = localStorage.getItem("UserMail");
+        const email = emailValue || "specialist@astra.space";
+        const extractedName = email.split("@")[0];
+        const formattedName = extractedName.charAt(0).toUpperCase() + extractedName.slice(1);
+        
+        document.querySelector(".user-email").textContent = email;
+        const welcomeEl = document.querySelector(".welcome-name");
+        if (welcomeEl) { welcomeEl.textContent = `| Welcome, ${formattedName} 🚀`; }
+
+        // Sidebar Navigation Logic
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        const openSidebarBtn = document.getElementById('openSidebar');
+        const closeSidebarBtn = document.getElementById('closeSidebar');
+
+        function openSidebar() { sidebar.classList.add('active'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeSidebar() { sidebar.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = 'auto'; }
+
+        openSidebarBtn.addEventListener('click', openSidebar);
+        closeSidebarBtn.addEventListener('click', closeSidebar);
+        overlay.addEventListener('click', closeSidebar);
+
+        const menuLinks = document.querySelectorAll('.sidebar-menu .menu-link');
+        const views = document.querySelectorAll('.view-section');
+        const pageTitle = document.getElementById('page-title');
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                if (this.classList.contains('active')) return;
+                
+                menuLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                views.forEach(v => v.classList.remove('active'));
+
+                const targetId = this.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+
+                pageTitle.innerHTML = `${this.innerText} <span class="welcome-name">| Uplink Active</span>`;
+
+                if (window.innerWidth <= 992) { closeSidebar(); }
+                triggerAnimations();
+            });
+        });
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem("UserMail");
+            window.location.href = "login.html";
+        });
+
+        // Chart.js Setup (Telemetry Theme)
+        const ctx = document.getElementById('deploymentChart').getContext('2d');
+        const deploymentChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['T-5h', 'T-4h', 'T-3h', 'T-2h', 'T-1h', 'Now'],
+                datasets: [{
+                    label: 'Signal Strength (dBm)',
+                    data: [-85, -70, -65, -50, -45, -30],
+                    borderColor: '#8B5CF6',
+                    backgroundColor: 'rgba(139, 92, 246, 0.15)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#8B5CF6',
+                    pointBorderColor: '#0B0914',
+                    pointBorderWidth: 2,
+                    pointRadius: 5,
+                    pointHoverRadius: 7
+                }]
+            },
+            options: {
+                responsive: true, 
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { 
+                        beginAtZero: false, 
+                        grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                        ticks: { color: '#94A3B8', font: {family: 'Outfit'} }
+                    },
+                    x: { 
+                        grid: { display: false },
+                        ticks: { color: '#94A3B8', font: {family: 'Outfit'} }
+                    }
+                }
+            }
+        });
+
+        // Scroll Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('show'); }
+            });
+        }, { threshold: 0.1 });
+
+        function triggerAnimations() {
+            const animElements = document.querySelectorAll('.scroll-anim');
+            animElements.forEach(el => {
+                el.classList.remove('show');
+                observer.observe(el);
+            });
+        }
+        triggerAnimations();
+
+        // Form Validation Logic (Orbital Adjustment)
+        document.getElementById('incidentForm').addEventListener('submit', function (e) {
+            e.preventDefault(); 
+
+            const targetInput = document.getElementById('targetInput');
+            const propulsionSelect = document.getElementById('propulsionSelect');
+            const prioritySelect = document.getElementById('prioritySelect');
+
+            const targetError = document.getElementById('targetError');
+            const propulsionError = document.getElementById('propulsionError');
+            const priorityError = document.getElementById('priorityError');
+            const formSuccess = document.getElementById('formSuccess');
+
+            let isValid = true;
+
+            targetInput.classList.remove('input-error');
+            propulsionSelect.classList.remove('input-error');
+            prioritySelect.classList.remove('input-error');
+            targetError.style.display = 'none';
+            propulsionError.style.display = 'none';
+            priorityError.style.display = 'none';
+            formSuccess.style.display = 'none';
+
+            if (targetInput.value.trim() === '') {
+                targetInput.classList.add('input-error');
+                targetError.style.display = 'block';
+                isValid = false;
+            }
+
+            if (propulsionSelect.value === '') {
+                propulsionSelect.classList.add('input-error');
+                propulsionError.style.display = 'block';
+                isValid = false;
+            }
+
+            if (prioritySelect.value === '') {
+                prioritySelect.classList.add('input-error');
+                priorityError.style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                formSuccess.style.display = 'block';
+
+                setTimeout(() => {
+                    this.reset();
+                    formSuccess.style.display = 'none';
+                    window.location.href = '404.html'
+                    
+                }, 500);
+
+                console.log("Orbital Maneuver Logged:", {
+                    target: targetInput.value,
+                    propulsion: propulsionSelect.value,
+                    priority: prioritySelect.value,
+                    remarks: document.getElementById('remarksInput').value
+                });
+            }
+        });
+    </script>
+</body>
+</html>

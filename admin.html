@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Admin</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            /* Futuristic AI Cyberpunk Theme */
+            --primary-color: #00f0ff;
+            --primary-light: rgba(0, 240, 255, 0.15);
+            --primary-dark: #008b99;
+            --primary-glow: rgba(0, 240, 255, 0.4);
+
+            --text-dark: #e0f2fe;
+            --text-muted: #7dd3fc;
+            --bg-color: #05080f;
+            --sidebar-bg: rgba(10, 15, 30, 0.85);
+            --header-bg: rgba(10, 15, 30, 0.85);
+            --border-color: rgba(0, 240, 255, 0.2);
+            --card-bg: rgba(255, 255, 255, 0.03);
+
+            --success: #00ffaa;
+            --warning: #ffea00;
+            --danger: #ff0055;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(10, 14, 23, 0.9), rgba(5, 8, 15, 0.95)),
+                url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat fixed;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        .sidebar {
+            width: 260px;
+            background-color: var(--sidebar-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1000;
+            position: fixed;
+            height: 100vh;
+            box-shadow: 5px 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 8, 15, 0.8);
+            z-index: 999;
+            backdrop-filter: blur(4px);
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        .sidebar-header {
+            padding: 25px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+        }
+
+        .logo-da {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        .logo-da i {
+            font-size: 28px;
+        }
+
+        .logo-da span {
+            color: white;
+        }
+
+        .close-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close-btn:hover {
+            color: var(--primary-color);
+            text-shadow: 0 0 8px var(--primary-glow);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        .menu-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 14px 25px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .menu-link i {
+            font-size: 18px;
+            width: 25px;
+            text-align: center;
+        }
+
+        .menu-link:hover,
+        .menu-link.active {
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            border-left: 4px solid var(--primary-color);
+            text-shadow: 0 0 8px var(--primary-glow);
+        }
+
+        .sidebar-bottom {
+            padding: 15px 0 25px 0;
+            border-top: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .logout-btn {
+            color: var(--danger);
+        }
+
+        .logout-btn:hover {
+            background-color: rgba(255, 0, 85, 0.1);
+            color: var(--danger);
+            border-left: 4px solid var(--danger);
+            text-shadow: 0 0 8px rgba(255, 0, 85, 0.4);
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-left: 260px;
+            min-height: 100vh;
+            width: calc(100% - 260px);
+        }
+
+        .top-header {
+            background-color: var(--header-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 998;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: var(--primary-light);
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        .greeting h1 {
+            font-size: 26px;
+            color: var(--text-dark);
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .welcome-name {
+            color: var(--primary-color);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-align: right;
+        }
+
+        .user-role {
+            font-size: 13px;
+            color: var(--primary-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            display: block;
+            letter-spacing: 1px;
+        }
+
+        .user-email {
+            font-size: 15px;
+            color: var(--text-dark);
+            font-weight: 600;
+            display: block;
+        }
+
+        .user-avatar i {
+            font-size: 40px;
+            color: var(--primary-color);
+            filter: drop-shadow(0 0 8px var(--primary-glow));
+        }
+
+        .view-section {
+            display: none;
+            padding: 30px;
+            animation: fadeIn 0.4s ease-in-out;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .view-section.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            border-left: 4px solid var(--primary-color);
+            padding-left: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .scroll-anim {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .scroll-anim.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.02);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6), inset 0 0 20px var(--primary-light);
+        }
+
+        .stat-icon {
+            width: 65px;
+            height: 65px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 26px;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-details h3 {
+            font-size: 28px;
+            margin-bottom: 4px;
+            color: var(--text-dark);
+            font-weight: 800;
+        }
+
+        .stat-details p {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content-box {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            width: 100%;
+            backdrop-filter: blur(10px);
+        }
+
+        .two-col-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 350px;
+            width: 100%;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            min-width: 600px;
+        }
+
+        th,
+        td {
+            padding: 16px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+            font-size: 15px;
+        }
+
+        th {
+            background-color: rgba(0, 0, 0, 0.4);
+            color: var(--primary-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        .status {
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid transparent;
+        }
+
+        .status.safe {
+            background: rgba(0, 255, 170, 0.1);
+            color: var(--success);
+            border-color: var(--success);
+        }
+
+        .status.warning {
+            background: rgba(255, 234, 0, 0.1);
+            color: var(--warning);
+            border-color: var(--warning);
+        }
+
+        .status.critical {
+            background: rgba(255, 0, 85, 0.1);
+            color: var(--danger);
+            border-color: var(--danger);
+        }
+
+        .status.active-blue {
+            background: var(--primary-light);
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .action-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .main-btn {
+            background: linear-gradient(90deg, rgba(0, 240, 255, 0.1), rgba(0, 240, 255, 0.2));
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 14px 24px;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+
+        .main-btn:hover {
+            background: var(--primary-color);
+            color: #000;
+            box-shadow: 0 0 15px var(--primary-glow);
+            transform: translateY(-2px);
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        .input-group input,
+        .input-group select,
+        .input-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            outline: none;
+            font-size: 15px;
+            color: var(--text-dark);
+            transition: 0.3s;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus,
+        .input-group textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px var(--primary-light);
+            background: rgba(0, 20, 30, 0.8);
+        }
+
+        select option {
+            background: var(--bg-color);
+            color: var(--text-dark);
+        }
+
+        .timeline {
+            margin-top: 20px;
+            border-left: 2px solid var(--border-color);
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .timeline-item {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -32px;
+            top: 2px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: 2px solid var(--bg-color);
+            box-shadow: 0 0 8px var(--primary-glow);
+        }
+
+        .timeline-item h4 {
+            font-size: 16px;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .timeline-item p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .error-msg {
+            color: var(--danger);
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+            font-weight: 600;
+        }
+
+        .input-error {
+            border-color: var(--danger) !important;
+            box-shadow: 0 0 8px rgba(255, 0, 85, 0.3) !important;
+        }
+
+        .success-msg {
+            color: var(--success);
+            background: rgba(0, 255, 170, 0.1);
+            border: 1px solid var(--success);
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 15px;
+            font-weight: 600;
+            display: none;
+            text-align: center;
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .close-btn {
+                display: block;
+            }
+
+            .two-col-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .top-header {
+                padding: 15px;
+            }
+
+            .view-section {
+                padding: 15px;
+                gap: 20px;
+            }
+
+            .user-info {
+                display: none;
+            }
+
+            .greeting h1 {
+                font-size: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-card {
+                padding: 20px;
+            }
+
+            .content-box {
+                padding: 20px;
+            }
+
+            .chart-container {
+                height: 250px;
+            }
+        }
+
+           a {
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 150px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .logo-da {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo-da i {
+            font-size: 28px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-top">
+                <div class="sidebar-header">
+                       <div class="logo-da">
+                        <img src="./asset/lodo.webp" alt="Company Logo" class="logo-img">
+                    </div>
+                    <button class="close-btn" id="closeSidebar"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <ul class="sidebar-menu">
+                    <li><a class="menu-link active" data-target="dashboard-view"><i
+                                class="fa-solid fa-network-wired"></i> System Overview</a></li>
+                    <li><a class="menu-link" data-target="incident-view"><i class="fa-solid fa-shield-halved"></i>
+                            Anomaly Log</a></li>
+                    <li><a class="menu-link" data-target="team-view"><i class="fa-solid fa-server"></i> Compute
+                            Nodes</a></li>
+                    <li><a class="menu-link" data-target="shelter-view"><i class="fa-solid fa-database"></i> Data
+                            Vaults</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-bottom">
+                <a href="login.html" class="menu-link logout-btn" id="logoutBtn">
+                    <i class="fa-solid fa-power-off"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="openSidebar">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="greeting">
+                        <h1 id="page-title">System Overview <span class="welcome-name"></span></h1>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="user-profile">
+                        <div class="user-info">
+                            <span class="user-role">System Admin</span>
+                            <span class="user-email">admin@nexus.ai</span>
+                        </div>
+                        <div class="user-avatar">
+                            <i class="fa-solid fa-circle-user"></i>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div id="dashboard-view" class="view-section active">
+                <section class="stats-grid scroll-anim">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(255,0,85,0.1); color: var(--danger);">
+                            <i class="fa-solid fa-bug"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>03</h3>
+                            <p>Active Anomalies</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--primary-light); color: var(--primary-color);">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>1,024</h3>
+                            <p>Neural Nodes Online</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(0,255,170,0.1); color: var(--success);">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>4.2M</h3>
+                            <p>Queries Processed</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-box scroll-anim">
+                    <h2 class="section-title">Global Compute Throughput</h2>
+                    <div class="chart-container">
+                        <canvas id="deploymentChart"></canvas>
+                    </div>
+                </section>
+            </div>
+
+            <div id="incident-view" class="view-section">
+                <section class="stats-grid scroll-anim">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(255,234,0,0.1); color: var(--warning);">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>12</h3>
+                            <p>Logic Warnings</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(255,0,85,0.1); color: var(--danger);">
+                            <i class="fa-solid fa-fire-flame-curved"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>04</h3>
+                            <p>Thermal Alerts</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--primary-light); color: var(--primary-color);">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>02</h3>
+                            <p>Breach Attempts</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="two-col-grid">
+                    <section class="content-box scroll-anim">
+                        <h2 class="section-title">Register Manual Override</h2>
+                        <form id="incidentForm" novalidate>
+                            <div id="formSuccess" class="success-msg">
+                                <i class="fa-solid fa-circle-check"></i> Override Command Injected Successfully!
+                            </div>
+
+                            <div class="input-group">
+                                <input type="text" id="gpsInput" placeholder="Enter Target Node ID or IP Address"
+                                    required>
+                                <div class="error-msg" id="gpsError">Invalid Node address provided.</div>
+                            </div>
+
+                            <div class="input-group">
+                                <select id="hazardSelect" required>
+                                    <option value="" selected disabled>Select Error Type</option>
+                                    <option value="cyclone">Logic Loop / Memory Leak</option>
+                                    <option value="flood">DDoS Traffic Surge</option>
+                                    <option value="chemical">Corrupt Data Weights</option>
+                                    <option value="collapse">Hardware Cluster Failure</option>
+                                </select>
+                                <div class="error-msg" id="hazardError">Please classify the error type.</div>
+                            </div>
+
+                            <div class="input-group">
+                                <select id="severitySelect" required>
+                                    <option value="" selected disabled>Select Protocol Priority</option>
+                                    <option value="level1">Priority 4 - Background Scan</option>
+                                    <option value="level2">Priority 3 - Throttle Bandwidth</option>
+                                    <option value="level3">Priority 2 - Quarantine Node</option>
+                                    <option value="level4">Priority 1 - Full System Purge</option>
+                                </select>
+                                <div class="error-msg" id="severityError">Please select protocol priority.</div>
+                            </div>
+
+                            <div class="input-group">
+                                <textarea id="remarksInput" rows="3"
+                                    placeholder="Execution parameters... (Optional)"></textarea>
+                            </div>
+
+                            <button type="submit" class="action-btn main-btn">
+                                <i class="fa-solid fa-terminal"></i> Execute Override
+                            </button>
+                        </form>
+                    </section>
+
+                    <section class="content-box scroll-anim">
+                        <h2 class="section-title">Live System Feed</h2>
+                        <ul style="list-style: none;">
+                            <li style="margin-bottom: 20px;">
+                                <div>
+                                    <i class="fa-solid fa-skull-crossbones"
+                                        style="color: var(--danger); margin-right: 10px; font-size: 18px;"></i>
+                                    <strong style="font-size: 16px;">Unrecognized Packet Sequence</strong><br>
+                                    <span style="font-size:14px; color:var(--text-muted); padding-left: 30px;">Cluster
+                                        Alpha, Malicious payload detected.</span>
+                                </div><br>
+                                <span class="status critical">Quarantined</span>
+                            </li>
+                            <li style="margin-bottom: 20px;">
+                                <div>
+                                    <i class="fa-solid fa-temperature-arrow-up"
+                                        style="color: var(--warning); margin-right: 10px; font-size: 18px;"></i>
+                                    <strong style="font-size: 16px;">Coolant System Fluctuation</strong><br>
+                                    <span style="font-size:14px; color:var(--text-muted); padding-left: 30px;">Sector 4
+                                        GPU Rack 12. Temp +14%</span>
+                                </div><br>
+                                <span class="status warning">Throttling</span>
+                            </li>
+                            <li>
+                                <div>
+                                    <i class="fa-solid fa-brain"
+                                        style="color: var(--primary-color); margin-right: 10px; font-size: 18px;"></i>
+                                    <strong style="font-size: 16px;">Neural Weight Corruption</strong><br>
+                                    <span style="font-size:14px; color:var(--text-muted); padding-left: 30px;">Language
+                                        Model V4. Reverting to backup.</span>
+                                </div><br>
+                                <span class="status active-blue">Recompiling</span>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+
+            <div id="team-view" class="view-section">
+                <section class="stats-grid scroll-anim">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--primary-light); color: var(--primary-color);">
+                            <i class="fa-solid fa-memory"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>14.2 PB</h3>
+                            <p>Active VRAM Allocated</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(0, 255, 170, 0.1); color: var(--success);">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>850</h3>
+                            <p>Tensor Cores Engaged</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(255, 234, 0, 0.1); color: var(--warning);">
+                            <i class="fa-solid fa-satellite-dish"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>23 ms</h3>
+                            <p>Average Latency</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="two-col-grid">
+                    <section class="content-box scroll-anim">
+                        <h2 class="section-title">Server Terminal Logs</h2>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h4><i class="fa-solid fa-terminal"
+                                        style="color: var(--primary-color); margin-right:8px;"></i> Root: Core-D1</h4>
+                                <p>14:30 | Dataset 'Omega-7' successfully ingested. Beginning backpropagation.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4><i class="fa-solid fa-shield-halved"
+                                        style="color: var(--success); margin-right:8px;"></i> Sec-Protocol V2</h4>
+                                <p>14:15 | Firewall rules updated. Blocked 14,000 requests from restricted IP subnets.
+                                </p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4><i class="fa-solid fa-server"
+                                        style="color: var(--text-muted); margin-right:8px;"></i> Node Maintenance</h4>
+                                <p style="color: var(--primary-color); font-weight: 600;">13:50 | Node Cluster 3
+                                    defragmentation complete. Rejoining swarm.</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div id="shelter-view" class="view-section">
+                <section class="stats-grid scroll-anim">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(0,255,170,0.1); color: var(--success);">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>24</h3>
+                            <p>Secure Vaults Active</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--primary-light); color: var(--primary-color);">
+                            <i class="fa-solid fa-hard-drive"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>85%</h3>
+                            <p>Global Storage Used</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(255,0,85,0.1); color: var(--danger);">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>2.5 PB</h3>
+                            <p>Storage Deficit Warning</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-box scroll-anim">
+                    <h2 class="section-title">Data Center Network Matrix</h2>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Vault ID</th>
+                                    <th>Hardware Details</th>
+                                    <th>Admin Route</th>
+                                    <th>Capacity Stats</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong style="color:var(--primary-color);">#VAULT-A1</strong></td>
+                                    <td><i class="fa-solid fa-microchip" style="color:var(--text-muted);"></i> Quantum
+                                        Storage Array</td>
+                                    <td>SSH: root@192.168.1.10</td>
+                                    <td><span
+                                            style="background: rgba(0, 240, 255, 0.1); border: 1px solid var(--border-color); padding: 4px 8px; border-radius: 4px; font-family: monospace;">3.2
+                                            EB / 5.0 EB</span></td>
+                                    <td><span class="status safe">Optimal Sync</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong style="color:var(--primary-color);">#VAULT-B4</strong></td>
+                                    <td><i class="fa-solid fa-server" style="color:var(--text-muted);"></i> Edge Caching
+                                        Cluster</td>
+                                    <td>SSH: root@192.168.4.55</td>
+                                    <td><span
+                                            style="background: rgba(255, 0, 85, 0.1); border: 1px solid var(--danger); color: var(--danger); padding: 4px 8px; border-radius: 4px; font-family: monospace;">1.5
+                                            TB / 1.5 TB</span></td>
+                                    <td><span class="status critical">Overflowing</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong style="color:var(--primary-color);">#VAULT-C2</strong></td>
+                                    <td><i class="fa-solid fa-cloud" style="color:var(--text-muted);"></i> Cold Storage
+                                        Deep-Glacier</td>
+                                    <td>SSH: root@10.0.0.99</td>
+                                    <td><span
+                                            style="background: rgba(255, 234, 0, 0.1); border: 1px solid var(--warning); color: var(--warning); padding: 4px 8px; border-radius: 4px; font-family: monospace;">8.5
+                                            PB / 9.0 PB</span></td>
+                                    <td><span class="status warning">Near Capacity</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // Profile Setup
+        const emailValue = localStorage.getItem("UserMail");
+        const email = emailValue || "admin@nexus.ai";
+        const extractedName = email.split("@")[0];
+        const formattedName = extractedName.charAt(0).toUpperCase() + extractedName.slice(1);
+
+        document.querySelector(".user-email").textContent = email;
+        const welcomeEl = document.querySelector(".welcome-name");
+        if (welcomeEl) { welcomeEl.textContent = `| Welcome, ${formattedName} 👋`; }
+
+        // Sidebar Navigation Logic
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        const openSidebarBtn = document.getElementById('openSidebar');
+        const closeSidebarBtn = document.getElementById('closeSidebar');
+
+        function openSidebar() { sidebar.classList.add('active'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeSidebar() { sidebar.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = 'auto'; }
+
+        openSidebarBtn.addEventListener('click', openSidebar);
+        closeSidebarBtn.addEventListener('click', closeSidebar);
+        overlay.addEventListener('click', closeSidebar);
+
+        const menuLinks = document.querySelectorAll('.sidebar-menu .menu-link');
+        const views = document.querySelectorAll('.view-section');
+        const pageTitle = document.getElementById('page-title');
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                if (this.classList.contains('active')) return;
+
+                menuLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                views.forEach(v => v.classList.remove('active'));
+
+                const targetId = this.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+
+                pageTitle.innerHTML = `${this.innerText} <span class="welcome-name">| System Online</span>`;
+
+                if (window.innerWidth <= 992) { closeSidebar(); }
+                triggerAnimations();
+            });
+        });
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem("UserMail");
+            window.location.href = "login.html";
+        });
+
+        // Chart.js Setup (Updated to Cyan Tech Theme)
+        const ctx = document.getElementById('deploymentChart').getContext('2d');
+        const deploymentChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
+                datasets: [{
+                    label: 'Processing Load (PetaFLOPS)',
+                    data: [120, 350, 800, 1450, 2200, 3420],
+                    borderColor: '#00f0ff',
+                    backgroundColor: 'rgba(0, 240, 255, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#00f0ff',
+                    pointBorderColor: '#05080f',
+                    pointBorderWidth: 2,
+                    pointRadius: 5,
+                    pointHoverRadius: 7
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(0, 240, 255, 0.1)' },
+                        ticks: { color: '#7dd3fc', font: { family: 'Rajdhani' } }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#7dd3fc', font: { family: 'Rajdhani' } }
+                    }
+                }
+            }
+        });
+
+        // Scroll Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('show'); }
+            });
+        }, { threshold: 0.1 });
+
+        function triggerAnimations() {
+            const animElements = document.querySelectorAll('.scroll-anim');
+            animElements.forEach(el => {
+                el.classList.remove('show');
+                observer.observe(el);
+            });
+        }
+        triggerAnimations();
+
+        // Form Validation Logic
+        document.getElementById('incidentForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const gpsInput = document.getElementById('gpsInput');
+            const hazardSelect = document.getElementById('hazardSelect');
+            const severitySelect = document.getElementById('severitySelect');
+
+            const gpsError = document.getElementById('gpsError');
+            const hazardError = document.getElementById('hazardError');
+            const severityError = document.getElementById('severityError');
+            const formSuccess = document.getElementById('formSuccess');
+
+            let isValid = true;
+
+            gpsInput.classList.remove('input-error');
+            hazardSelect.classList.remove('input-error');
+            severitySelect.classList.remove('input-error');
+            gpsError.style.display = 'none';
+            hazardError.style.display = 'none';
+            severityError.style.display = 'none';
+            formSuccess.style.display = 'none';
+
+            if (gpsInput.value.trim() === '') {
+                gpsInput.classList.add('input-error');
+                gpsError.style.display = 'block';
+                isValid = false;
+            }
+
+            if (hazardSelect.value === '') {
+                hazardSelect.classList.add('input-error');
+                hazardError.style.display = 'block';
+                isValid = false;
+            }
+
+            if (severitySelect.value === '') {
+                severitySelect.classList.add('input-error');
+                severityError.style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                formSuccess.style.display = 'block';
+
+                setTimeout(() => {
+                    this.reset();
+                    formSuccess.style.display = 'none';
+                     window.location.href = "404.html"; // Commented out so it doesn't actually redirect while testing
+                }, 500);
+
+                console.log("System Override Logged:", {
+                    node: gpsInput.value,
+                    errorType: hazardSelect.value,
+                    priority: severitySelect.value,
+                    remarks: document.getElementById('remarksInput').value
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
