@@ -7,9 +7,7 @@
     <title>404 - Page Not Found | AI Machi</title>
 
     <style>
-        /* =========================================
-           Global Reset & Typography
-        ========================================= */
+        
         * {
             margin: 0;
             padding: 0;
@@ -20,11 +18,11 @@
             background: #05050a;
             color: white;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Prevent horizontal scroll from glowing orbs */
-            overflow-x: hidden; 
-            /* Use dynamic viewport height for mobile browsers */
+           
+            overflow-x: hidden;
+            
             min-height: 100vh;
-            min-height: 100dvh; 
+            min-height: 100dvh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -34,9 +32,7 @@
             color: #00d2ff;
         }
 
-        /* =========================================
-           404 Error Section
-        ========================================= */
+       
         .error-section {
             position: relative;
             width: 100%;
@@ -45,10 +41,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px; /* Safe area so the card never touches screen edges */
+            padding: 20px;
+            
         }
 
-        /* --- Ambient Glowing Background --- */
+        
         .error-glow {
             position: absolute;
             width: 50vw;
@@ -60,7 +57,8 @@
             z-index: 0;
             opacity: 0.3;
             animation: pulseGlow 8s infinite alternate ease-in-out;
-            pointer-events: none; /* Prevents glows from blocking clicks */
+            pointer-events: none;
+           
         }
 
         .glow-blue {
@@ -77,11 +75,18 @@
         }
 
         @keyframes pulseGlow {
-            0% { transform: scale(1); opacity: 0.2; }
-            100% { transform: scale(1.3); opacity: 0.4; }
+            0% {
+                transform: scale(1);
+                opacity: 0.2;
+            }
+
+            100% {
+                transform: scale(1.3);
+                opacity: 0.4;
+            }
         }
 
-        /* --- Glassmorphism Container --- */
+        
         .error-container {
             position: relative;
             z-index: 1;
@@ -97,9 +102,10 @@
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
         }
 
-        /* --- Floating 404 Code --- */
+        
         .error-code {
-            font-size: clamp(80px, 15vw, 150px); /* Fluid typography */
+            font-size: clamp(80px, 15vw, 150px);
+           
             font-weight: 900;
             margin: 0;
             line-height: 1;
@@ -111,13 +117,18 @@
         }
 
         @keyframes float404 {
-            0% { transform: translateY(0px); }
-            100% { transform: translateY(-15px); }
+            0% {
+                transform: translateY(0px);
+            }
+
+            100% {
+                transform: translateY(-15px);
+            }
         }
 
-        /* --- Content Typography --- */
+        
         .error-content h2 {
-            font-size: clamp(24px, 5vw, 36px); /* Fluid typography */
+            font-size: clamp(24px, 5vw, 36px);
             margin: 20px 0 15px;
             font-weight: 800;
         }
@@ -129,7 +140,7 @@
             margin-bottom: 35px;
         }
 
-        /* --- Action Buttons --- */
+       
         .error-actions {
             display: flex;
             gap: 15px;
@@ -178,7 +189,7 @@
             transform: translateY(-3px);
         }
 
-        /* --- Quick Links Footer --- */
+       
         .quick-links {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 25px;
@@ -203,9 +214,7 @@
             color: #00d2ff;
         }
 
-        /* =========================================
-           Strict Mobile Overrides (Phones & Tablets)
-        ========================================= */
+        
         @media screen and (max-width: 600px) {
             .error-container {
                 padding: 40px 20px;
@@ -216,20 +225,21 @@
                 margin-bottom: 25px;
             }
 
-            /* Stack buttons vertically on small screens */
+          
             .error-actions {
                 flex-direction: column;
                 gap: 15px;
             }
 
-            /* Make buttons full width for easy tapping */
+            
             .btn-primary-large,
             .btn-secondary-large {
                 width: 100%;
-                padding: 18px 20px; /* Slightly taller for thumbs */
+                padding: 18px 20px;
+               
             }
 
-            /* Stack and enlarge quick links for easy tapping */
+            
             .quick-links {
                 flex-direction: column;
                 gap: 0;
@@ -249,8 +259,8 @@
             .quick-links a:last-child {
                 border-bottom: none;
             }
+
             
-            /* Shrink glows significantly so they don't overpower small screens */
             .error-glow {
                 filter: blur(60px);
                 opacity: 0.2;
@@ -270,7 +280,8 @@
 
             <div class="error-content">
                 <h2>Lost in the <span class="highlight">Neural Network</span></h2>
-                <p>The page you are looking for has been moved, deleted, or perhaps it was just a hallucination by our AI.</p>
+                <p>The page you are looking for has been moved, deleted, or perhaps it was just a hallucination by our
+                    AI.</p>
 
                 <div class="error-actions">
                     <a href="index.html" class="btn-primary-large">

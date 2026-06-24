@@ -83,7 +83,7 @@ loginForm.addEventListener("submit", (e) => {
 
     if (isValid) {
         localStorage.setItem("UserMail", email);
-        
+
         const btn = loginForm.querySelector('.main-btn');
         btn.innerText = "Processing...";
 
@@ -95,7 +95,7 @@ loginForm.addEventListener("submit", (e) => {
             } else {
                 window.location.href = "index.html";
             }
-        }, 500); 
+        }, 500);
     }
 });
 
@@ -132,7 +132,7 @@ signupForm.addEventListener("submit", (e) => {
     if (isValid) {
         const btn = signupForm.querySelector('.main-btn');
         btn.innerText = "Generating Pass...";
-        
+
         setTimeout(() => {
             alert("Node registered successfully. You may now authenticate.");
             showLoginForm();

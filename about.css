@@ -3,7 +3,7 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background-color: #020205; 
+    background-color: #020205;
     overflow: hidden;
     padding: 100px 5% 0;
 }
@@ -19,29 +19,40 @@
 }
 
 .blob-1 {
-    top: -10%; left: -10%;
-    width: 50vw; height: 50vw;
+    top: -10%;
+    left: -10%;
+    width: 50vw;
+    height: 50vw;
     background: #00d2ff;
 }
 
 .blob-2 {
-    bottom: -10%; right: -10%;
-    width: 40vw; height: 40vw;
+    bottom: -10%;
+    right: -10%;
+    width: 40vw;
+    height: 40vw;
     background: #7b2cbf;
     animation-delay: -5s;
 }
 
 .blob-3 {
-    top: 40%; left: 40%;
-    width: 30vw; height: 30vw;
+    top: 40%;
+    left: 40%;
+    width: 30vw;
+    height: 30vw;
     background: #ff007a;
     animation-delay: -10s;
     opacity: 0.3;
 }
 
 @keyframes moveAurora {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(100px, -100px) scale(1.2); }
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(100px, -100px) scale(1.2);
+    }
 }
 
 .premium-hero-container {
@@ -149,11 +160,11 @@
 .glass-orb {
     position: absolute;
     border-radius: 50%;
-    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: inset 0 0 20px rgba(255,255,255,0.05), 0 20px 40px rgba(0,0,0,0.5);
-    transition: transform 0.1s ease-out; 
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05), 0 20px 40px rgba(0, 0, 0, 0.5);
+    transition: transform 0.1s ease-out;
 }
 
 .orb-large {
@@ -190,7 +201,7 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
 
@@ -244,21 +255,27 @@
 
     .glass-card-abstract {
         left: 50%;
-        margin-left: -125px; 
+        margin-left: -125px;
         bottom: 0;
     }
 }
 
 @media screen and (max-width: 480px) {
-    .hero-title { font-size: 36px; }
-    .hero-actions { flex-direction: column; }
-    .btn { width: 100%; }
+    .hero-title {
+        font-size: 36px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
 }
 
 
-/* =========================================
-   Mission & Vision Premium Section
-========================================= */
+
 .mv-premium-section {
     padding: 80px 5% 100px;
     background-color: #05050a;
@@ -266,7 +283,7 @@
     overflow: hidden;
 }
 
-/* --- Showcase Card Layout --- */
+
 .mv-showcase-card {
     display: flex;
     align-items: center;
@@ -286,18 +303,19 @@
     transform: translateY(-5px);
 }
 
-/* Reverse layout for Vision card */
+
 .mv-showcase-card.reversed {
     flex-direction: row-reverse;
 }
 
-/* --- Image Column & Floating Animation --- */
+
 .mv-image-col {
     flex: 1;
     position: relative;
     border-radius: 16px;
     overflow: hidden;
-    height: 350px; /* Fixed height for consistency */
+    height: 350px;
+   
 }
 
 .floating-img {
@@ -310,19 +328,30 @@
 }
 
 .delay-float {
-    animation-delay: -3s; /* Out of sync floating for natural feel */
+    animation-delay: -3s;
+   
 }
 
 .mv-showcase-card:hover .floating-img {
-    transform: scale(1.05); /* Slight zoom on card hover */
+    transform: scale(1.05);
+   
 }
 
 @keyframes floatImage {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-15px) scale(1.02); } /* Moves up slowly */
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-15px) scale(1.02);
+    }
+
+    
 }
 
-/* Neon Back-Glow behind images */
+
 .image-glow {
     position: absolute;
     top: 50%;
@@ -334,10 +363,16 @@
     z-index: -1;
     opacity: 0.6;
 }
-.mission-glow { background: #00d2ff; }
-.vision-glow { background: #7b2cbf; }
 
-/* --- Text Column Styling --- */
+.mission-glow {
+    background: #00d2ff;
+}
+
+.vision-glow {
+    background: #7b2cbf;
+}
+
+
 .mv-text-col {
     flex: 1;
     padding: 20px;
@@ -377,7 +412,7 @@
     margin-bottom: 25px;
 }
 
-/* Bullet Points */
+
 .mv-list {
     list-style: none;
     padding: 0;
@@ -399,32 +434,37 @@
     font-size: 16px;
 }
 
-/* =========================================
-   Mobile Responsiveness (Below 900px)
-========================================= */
+
 @media screen and (max-width: 900px) {
-    .mv-showcase-card, 
+
+    .mv-showcase-card,
     .mv-showcase-card.reversed {
-        flex-direction: column; /* Stack vertically on mobile */
+        flex-direction: column;
+        
         gap: 30px;
         padding: 20px;
     }
-    
+
     .mv-image-col {
         width: 100%;
-        height: 250px; /* Slightly shorter image on mobile */
+        height: 250px;
+      
     }
-    
+
     .mv-text-col {
         padding: 0;
-        text-align: center; /* Center text on mobile */
+        text-align: center;
+        
     }
 
     .mv-list li {
-        justify-content: center; /* Center bullet points */
+        justify-content: center;
+      
     }
-    
-    .mv-text-col h3 { font-size: 26px; }
+
+    .mv-text-col h3 {
+        font-size: 26px;
+    }
 }
 
 
@@ -454,34 +494,35 @@
     width: calc(33.333% - 20px);
     min-width: 300px;
     display: flex;
-    overflow: hidden; 
+    overflow: hidden;
     cursor: default;
 }
 
 .phil-card::before {
     content: "";
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    
-    background: radial-gradient(
-        800px circle at var(--mouse-x) var(--mouse-y), 
-        rgba(0, 210, 255, 0.15), 
-        transparent 40%
-    );
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y),
+            rgba(0, 210, 255, 0.15),
+            transparent 40%);
     z-index: 0;
     opacity: 0;
     transition: opacity 0.5s ease;
 }
 
 .phil-card:hover::before {
-    opacity: 1; 
+    opacity: 1;
 }
 
 
 .card-content {
-    background-color: #08080f; 
+    background-color: #08080f;
     border-radius: 18px;
-    margin: 2px; 
+    margin: 2px;
     padding: 40px 30px;
     z-index: 2;
     position: relative;
@@ -518,7 +559,8 @@
     font-size: 15px;
     line-height: 1.7;
 }
-.text-center{
+
+.text-center {
     color: #00d2ff;
 }
 
@@ -531,10 +573,10 @@
 
 @media screen and (max-width: 768px) {
     .phil-card {
-        width: 100%; 
+        width: 100%;
     }
-    
-    
+
+
     .phil-card::before {
         opacity: 1;
         background: radial-gradient(circle at top right, rgba(0, 210, 255, 0.1), transparent 60%);
@@ -544,7 +586,7 @@
 
 .journey-premium {
     padding: 120px 5%;
-    background-color: #020205; 
+    background-color: #020205;
     position: relative;
 }
 
@@ -665,43 +707,43 @@
 .timeline-row.left .timeline-card {
     display: flex;
     flex-direction: column;
-    align-items: flex-end; 
+    align-items: flex-end;
 }
 
 .timeline-row.right .timeline-card {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; 
+    align-items: flex-start;
 }
 
 
 @media screen and (max-width: 768px) {
-    
+
     .timeline-advanced::before {
         left: 20px;
     }
 
-   
+
     .timeline-row {
         width: 100%;
         padding: 0 0 0 60px;
         text-align: left;
     }
 
-    
+
     .timeline-row.left,
     .timeline-row.right {
         left: 0;
     }
 
-    
+
     .timeline-row.left .timeline-dot,
     .timeline-row.right .timeline-dot {
         left: 8px;
         right: auto;
     }
 
-    
+
     .timeline-row.left .timeline-card,
     .timeline-row.right .timeline-card {
         align-items: flex-start;
@@ -726,7 +768,7 @@
 
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(3, 1fr);
     gap: 40px;
     margin-top: 60px;
 }
@@ -750,7 +792,7 @@
 .team-img-wrapper {
     position: relative;
     width: 100%;
-    height: 300px; 
+    height: 300px;
     overflow: hidden;
 }
 
@@ -758,7 +800,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(100%) contrast(1.2); 
+    filter: grayscale(100%) contrast(1.2);
     transition: filter 0.5s ease, transform 0.5s ease;
 }
 
@@ -779,12 +821,12 @@
     display: flex;
     justify-content: center;
     gap: 15px;
-    transform: translateY(100%); 
+    transform: translateY(100%);
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .team-card:hover .team-socials {
-    transform: translateY(0); 
+    transform: translateY(0);
 }
 
 .social-btn {
@@ -841,18 +883,18 @@
 
 @media screen and (max-width: 900px) {
     .team-grid {
-        grid-template-columns: repeat(2, 1fr); 
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media screen and (max-width: 768px) {
     .team-grid {
-        grid-template-columns: 1fr; 
+        grid-template-columns: 1fr;
         gap: 30px;
     }
 
     .team-img-wrapper {
-        height: 350px; 
+        height: 350px;
     }
 
     .team-socials {
@@ -861,7 +903,7 @@
     }
 
     .team-img {
-        filter: grayscale(0%); 
+        filter: grayscale(0%);
     }
 }
 
@@ -975,8 +1017,8 @@
     .impact-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
-    
+
+
     .stat-card:nth-child(3) {
         grid-column: span 2;
     }
@@ -989,7 +1031,7 @@
     }
 
     .stat-card:nth-child(3) {
-        grid-column: span 1; 
+        grid-column: span 1;
     }
 
     .stat-card {
@@ -999,7 +1041,7 @@
     .stat-card h2 {
         font-size: 50px;
     }
-    
+
     .stat-suffix {
         font-size: 30px;
     }
@@ -1025,7 +1067,7 @@
     padding: 80px 60px;
     text-align: center;
     overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -1113,7 +1155,7 @@
     .cta-glass-box {
         padding: 50px 30px;
     }
-    
+
     .cta-content h2 {
         font-size: 32px;
     }
@@ -1121,7 +1163,7 @@
     .cta-buttons {
         flex-direction: column;
     }
-    
+
     .btn {
         width: 100%;
         text-align: center;

@@ -26,7 +26,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px 50px;
-    
+
     margin: 0 auto;
 }
 
@@ -71,9 +71,11 @@ body {
 .nav-link:hover {
     color: #00d2ff;
 }
-.nav-activ{
-    color:#00d2ff ;
+
+.nav-activ {
+    color: #00d2ff;
 }
+
 .btn-contact {
     background: #00d2ff;
     color: #000;
@@ -216,7 +218,7 @@ body {
     gap: 40px;
 }
 
-/* Brand Column */
+
 .brand-desc {
     color: #a0a0b5;
     font-size: 15px;
@@ -477,6 +479,6 @@ body {
     transform: translateY(-3px);
 }
 
-a{
+a {
     text-decoration: none;
 }

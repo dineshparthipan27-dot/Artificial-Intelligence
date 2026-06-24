@@ -1078,7 +1078,6 @@
         transform: translateX(calc(-50% - 10px));
     }
 
-    /* Moves halfway (ignoring duplicate gap) */
 }
 
 @keyframes scrollRight {

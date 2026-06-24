@@ -1,9 +1,7 @@
-/* =========================================
-   Premium Contact Hero (Split Layout)
-========================================= */
-.contact-hero-premium.split-layout { 
+
+.contact-hero-premium.split-layout {
     position: relative;
-    padding: 160px 5% 120px; 
+    padding: 160px 5% 120px;
     min-height: 80vh;
     display: flex;
     align-items: center;
@@ -12,12 +10,15 @@
     background-color: #05050a;
 }
 
-/* --- Background Grid & Orbs --- */
+
 .hero-grid-bg {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-size: 50px 50px;
-    background-image: 
+    background-image:
         linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
     mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
@@ -34,27 +35,47 @@
     animation: floatOrbs 12s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.orb-1 { width: 350px; height: 350px; background: #00d2ff; top: -10%; left: 10%; }
-.orb-2 { width: 400px; height: 400px; background: #7b2cbf; bottom: -10%; right: 5%; animation-delay: -5s; }
-
-@keyframes floatOrbs {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(60px, -40px) scale(1.2); }
+.orb-1 {
+    width: 350px;
+    height: 350px;
+    background: #00d2ff;
+    top: -10%;
+    left: 10%;
 }
 
-/* --- Layout Grid --- */
+.orb-2 {
+    width: 400px;
+    height: 400px;
+    background: #7b2cbf;
+    bottom: -10%;
+    right: 5%;
+    animation-delay: -5s;
+}
+
+@keyframes floatOrbs {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(60px, -40px) scale(1.2);
+    }
+}
+
+
 .hero-content-grid {
     position: relative;
     z-index: 2;
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr; /* Left side slightly larger */
+    grid-template-columns: 1.1fr 0.9fr;
+  
     gap: 60px;
     align-items: center;
     max-width: 1200px;
     width: 100%;
 }
 
-/* --- Left Text Column --- */
+
 .live-status-badge {
     display: inline-flex;
     align-items: center;
@@ -70,7 +91,8 @@
 }
 
 .pulse-dot {
-    width: 8px; height: 8px;
+    width: 8px;
+    height: 8px;
     background: #00ff88;
     border-radius: 50%;
     box-shadow: 0 0 10px #00ff88;
@@ -78,17 +100,28 @@
 }
 
 @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(0, 255, 136, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 255, 136, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 136, 0);
+    }
 }
 
-.highlight-text { color: #fff; font-weight: bold; }
+.highlight-text {
+    color: #fff;
+    font-weight: bold;
+}
 
-.hero-title { 
-    font-size: 60px; 
-    margin-bottom: 25px; 
-    letter-spacing: -2px; 
+.hero-title {
+    font-size: 60px;
+    margin-bottom: 25px;
+    letter-spacing: -2px;
     font-weight: 800;
     color: #fff;
     line-height: 1.1;
@@ -103,18 +136,23 @@
 }
 
 @keyframes gradientFlow {
-    0% { background-position: 0% center; }
-    100% { background-position: 300% center; }
+    0% {
+        background-position: 0% center;
+    }
+
+    100% {
+        background-position: 300% center;
+    }
 }
 
-.hero-subtitle { 
-    color: #a0a0b5; 
-    font-size: 18px; 
+.hero-subtitle {
+    color: #a0a0b5;
+    font-size: 18px;
     line-height: 1.7;
     max-width: 500px;
 }
 
-/* --- Right Image Column --- */
+
 .hero-image-col {
     position: relative;
     display: flex;
@@ -124,7 +162,8 @@
 
 .image-glow-ring {
     position: absolute;
-    width: 350px; height: 350px;
+    width: 350px;
+    height: 350px;
     background: radial-gradient(circle, rgba(0, 210, 255, 0.15), transparent 70%);
     border-radius: 50%;
     filter: blur(40px);
@@ -142,10 +181,11 @@
     object-fit: cover;
 }
 
-/* Floating Glass Support Card */
+
 .floating-contact-card {
     position: absolute;
-    bottom: -15px; left: -20px;
+    bottom: -15px;
+    left: -20px;
     background: rgba(10, 10, 15, 0.75);
     border: 1px solid rgba(255, 255, 255, 0.12);
     padding: 15px 20px;
@@ -171,19 +211,39 @@
     flex-direction: column;
 }
 
-.card-text strong { color: #fff; font-size: 15px; }
-.card-text span { color: #a0a0b5; font-size: 12px; margin-top: 3px; }
-
-/* Float Animations */
-.floating-anim { animation: smoothFloat 6s ease-in-out infinite; }
-.float-delay { animation: smoothFloat 5s ease-in-out infinite reverse; }
-
-@keyframes smoothFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+.card-text strong {
+    color: #fff;
+    font-size: 15px;
 }
 
-/* --- Scroll Indicator --- */
+.card-text span {
+    color: #a0a0b5;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+
+.floating-anim {
+    animation: smoothFloat 6s ease-in-out infinite;
+}
+
+.float-delay {
+    animation: smoothFloat 5s ease-in-out infinite reverse;
+}
+
+@keyframes smoothFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+
 .scroll-indicator {
     position: absolute;
     bottom: 30px;
@@ -209,41 +269,58 @@
 }
 
 @keyframes scrollMouse {
-    0% { transform: translate(-50%, 0); opacity: 1; }
-    100% { transform: translate(-50%, 15px); opacity: 0; }
+    0% {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, 15px);
+        opacity: 0;
+    }
 }
 
-/* =========================================
-   Mobile Responsiveness
-========================================= */
+
 @media screen and (max-width: 900px) {
-    .contact-hero-premium.split-layout { 
-        padding: 130px 5% 60px; 
+    .contact-hero-premium.split-layout {
+        padding: 130px 5% 60px;
         text-align: center;
     }
-    
+
     .hero-content-grid {
-        grid-template-columns: 1fr; /* Stack vertically */
+        grid-template-columns: 1fr;
+       
         gap: 50px;
     }
+
+    .live-status-badge {
+        margin: 0 auto 25px;
+    }
+
     
-    .live-status-badge { margin: 0 auto 25px; } /* Center badge */
-    .hero-title { font-size: 42px; }
-    .hero-subtitle { margin: 0 auto; }
-    
+    .hero-title {
+        font-size: 42px;
+    }
+
+    .hero-subtitle {
+        margin: 0 auto;
+    }
+
     .floating-contact-card {
         bottom: -15px;
         left: 50%;
-        transform: translateX(-50%); /* Center the floating card on mobile */
+        transform: translateX(-50%);
+        
         width: max-content;
     }
-    
-    .scroll-indicator { display: none; /* Hide scroll indicator to save space */ }
+
+    .scroll-indicator {
+        display: none;
+       
+    }
 }
 
-/* =========================================
-   2. Premium Contact Methods Grid
-========================================= */
+
 .premium-methods-section {
     padding: 20px 5% 100px;
     background-color: #05050a;
@@ -274,7 +351,7 @@
     margin: 0 auto;
 }
 
-/* --- Base Card Styling --- */
+
 .method-card {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -285,7 +362,6 @@
     display: flex;
     flex-direction: column;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    /* Bouncy hover */
     overflow: hidden;
 }
 
@@ -295,12 +371,12 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0, 210, 255, 0.05);
 }
 
-/* --- Highlighted Support Card --- */
+
 .highlight-card {
     background: linear-gradient(145deg, rgba(0, 210, 255, 0.04), rgba(123, 44, 191, 0.02));
     border: 1px solid rgba(0, 210, 255, 0.2);
     transform: scale(1.02);
-    /* Slightly larger */
+    
 }
 
 .highlight-card:hover {
@@ -309,7 +385,7 @@
     box-shadow: 0 20px 50px rgba(0, 210, 255, 0.15);
 }
 
-/* Inner glow for the highlighted card */
+
 .glow-backdrop {
     position: absolute;
     top: -50px;
@@ -321,7 +397,7 @@
     pointer-events: none;
 }
 
-/* --- Icon Wrapper & Floating Animations --- */
+
 .icon-wrapper {
     width: 70px;
     height: 70px;
@@ -347,7 +423,7 @@
     text-shadow: 0 0 15px rgba(0, 210, 255, 0.8);
 }
 
-/* Float Animations for Icons */
+
 .float-icon {
     display: block;
     animation: floatIcon 3s ease-in-out infinite alternate;
@@ -371,7 +447,7 @@
     }
 }
 
-/* --- Typography --- */
+
 .method-card h3 {
     color: #fff;
     font-size: 24px;
@@ -385,10 +461,10 @@
     line-height: 1.6;
     margin-bottom: 30px;
     flex-grow: 1;
-    /* Pushes the action link to the bottom consistently */
+    
 }
 
-/* --- Action Links with SVG Arrows --- */
+
 .action-link {
     color: #6a6a80;
     text-decoration: none;
@@ -409,7 +485,7 @@
     color: #00d2ff;
 }
 
-/* Hover effects for link and arrow */
+
 .method-card:hover .action-link {
     color: #00d2ff;
 }
@@ -418,9 +494,7 @@
     transform: translateX(8px);
 }
 
-/* =========================================
-   Mobile Responsiveness
-========================================= */
+
 @media (max-width: 900px) {
     .methods-grid {
         grid-template-columns: 1fr;
@@ -435,7 +509,7 @@
 
     .highlight-card {
         transform: scale(1);
-        /* Remove desktop scaling so it fits mobile screen perfectly */
+        
     }
 
     .highlight-card:hover {
@@ -443,9 +517,7 @@
     }
 }
 
-/* =========================================
-   3. Interactive Contact Form
-========================================= */
+
 .contact-form-section {
     padding: 60px 5% 100px;
     background-color: #121226;
@@ -478,7 +550,7 @@
     font-size: 16px;
 }
 
-/* --- Input Groups & Grid --- */
+
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -490,7 +562,7 @@
     margin-bottom: 35px;
 }
 
-/* --- Form Fields Base Styling --- */
+
 .input-group input,
 .input-group textarea,
 .input-group select {
@@ -507,7 +579,7 @@
     resize: none;
 }
 
-/* Select element styling */
+
 .input-group select {
     color: #a0a0b5;
     cursor: pointer;
@@ -518,7 +590,7 @@
     color: #fff;
 }
 
-/* Focus & Valid States (Neon Blue Glow) */
+
 .input-group input:focus,
 .input-group textarea:focus,
 .input-group select:focus {
@@ -526,7 +598,7 @@
     box-shadow: 0 10px 10px -10px rgba(0, 210, 255, 0.5);
 }
 
-/* --- Floating Labels Magic Trick --- */
+
 .input-group label {
     position: absolute;
     top: 15px;
@@ -537,7 +609,7 @@
     transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* When input is focused OR has text (placeholder hidden) */
+
 .input-group input:focus~label,
 .input-group input:not(:placeholder-shown)~label,
 .input-group textarea:focus~label,
@@ -548,7 +620,7 @@
     font-weight: 600;
 }
 
-/* --- Validation States --- */
+
 .error-msg {
     position: absolute;
     bottom: -20px;
@@ -559,7 +631,7 @@
     transition: opacity 0.3s;
 }
 
-/* Applied via JS when validation fails */
+
 .input-group.invalid input,
 .input-group.invalid textarea,
 .input-group.invalid select {
@@ -574,7 +646,7 @@
     opacity: 1;
 }
 
-/* Shake Animation for Invalid Fields */
+
 .shake {
     animation: shakeError 0.4s ease-in-out;
 }
@@ -599,7 +671,7 @@
     }
 }
 
-/* --- Submit Button --- */
+
 .btn-submit {
     width: 100%;
     background: linear-gradient(90deg, #00d2ff, #0099ff);
@@ -624,7 +696,7 @@
     background: #fff;
 }
 
-/* Loading Spinner for Submit */
+
 .loader {
     display: none;
     width: 20px;
@@ -653,7 +725,7 @@
     display: block;
 }
 
-/* Success Message Alert */
+
 .success-alert {
     display: none;
     margin-top: 25px;
@@ -679,9 +751,6 @@
     }
 }
 
-/* =========================================
-   Mobile Responsiveness
-========================================= */
 @media (max-width: 768px) {
     .form-wrapper {
         padding: 40px 25px;
@@ -697,15 +766,13 @@
     }
 }
 
-/* =========================================
-   4. Global Presence Section
-========================================= */
+
 .global-presence-section {
     padding: 60px 5% 100px;
     background-color: #05050a;
     position: relative;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
-    /* Clean separator from form */
+   
 }
 
 .locations-grid {
@@ -716,7 +783,7 @@
     margin: 50px auto 0;
 }
 
-/* --- Location Card Styling --- */
+
 .location-card {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -737,7 +804,7 @@
     background: linear-gradient(180deg, rgba(0, 210, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
 }
 
-/* --- Radar Animation (Tech Map Vibe) --- */
+
 .radar-container {
     position: relative;
     width: 80px;
@@ -748,7 +815,7 @@
     margin-bottom: 25px;
 }
 
-/* The solid glowing core */
+
 .radar-core {
     width: 16px;
     height: 16px;
@@ -758,7 +825,7 @@
     z-index: 2;
 }
 
-/* The expanding radar ring */
+
 .radar-ping {
     position: absolute;
     width: 100%;
@@ -771,7 +838,7 @@
 
 .radar-ping.delay {
     animation-delay: 1.2s;
-    /* Offsets the animation for APAC so they don't all pulse exactly at the same time */
+    
 }
 
 @keyframes radarPulse {
@@ -793,7 +860,7 @@
     }
 }
 
-/* --- Typography & Info --- */
+
 .location-info h3 {
     font-size: 22px;
     color: #fff;
@@ -818,7 +885,7 @@
     flex-grow: 1;
 }
 
-/* --- Server Status Indicator --- */
+
 .server-status {
     background: rgba(0, 255, 136, 0.05);
     border: 1px solid rgba(0, 255, 136, 0.2);
@@ -840,9 +907,7 @@
     box-shadow: 0 0 10px #00ff88;
 }
 
-/* =========================================
-   Mobile Responsiveness
-========================================= */
+
 @media (max-width: 900px) {
     .locations-grid {
         grid-template-columns: 1fr;
@@ -851,9 +916,7 @@
     }
 }
 
-/* =========================================
-   5. Help Center / Documentation
-========================================= */
+
 .help-center-section {
     padding: 60px 5%;
     background-color: #121226;
@@ -873,7 +936,7 @@
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
 }
 
-/* --- Left Side Content --- */
+
 .help-content {
     flex: 1;
 }
@@ -913,7 +976,7 @@
     margin-bottom: 40px;
 }
 
-/* Glass Search Bar */
+
 .mock-search-bar {
     display: flex;
     align-items: center;
@@ -959,7 +1022,7 @@
     transform: translateX(-2px);
 }
 
-/* --- Right Side Links --- */
+
 .help-links {
     flex: 1;
     display: flex;
@@ -982,7 +1045,7 @@
     background: rgba(0, 210, 255, 0.05);
     border-color: rgba(0, 210, 255, 0.3);
     transform: translateX(10px);
-    /* Slides the entire card right */
+    
 }
 
 .doc-icon {
@@ -1033,12 +1096,10 @@
     transform: translateX(5px);
 }
 
-/* =========================================
-   Search Bar Validation States
-========================================= */
+
 .mock-search-bar.invalid {
     border-color: #ff3366 !important;
-    /* Red border for error */
+    
     box-shadow: 0 0 15px rgba(255, 51, 102, 0.2);
 }
 
@@ -1048,11 +1109,11 @@
     margin-top: 10px;
     margin-left: 10px;
     display: none;
-    /* Hidden by default */
+    
     font-weight: 600;
 }
 
-/* Shake Animation (Reuse if you already have it) */
+
 .shake {
     animation: shakeError 0.4s ease-in-out;
 }
@@ -1077,9 +1138,7 @@
     }
 }
 
-/* =========================================
-   Mobile Responsiveness
-========================================= */
+
 @media (max-width: 900px) {
     .help-glass-panel {
         flex-direction: column;
@@ -1093,7 +1152,7 @@
 
     .mock-search-bar {
         flex-wrap: wrap;
-        /* Search button wraps on very small screens */
+        
     }
 
     .btn-search {
@@ -1103,9 +1162,7 @@
     }
 }
 
-/* =========================================
-   6. Community Links Section
-========================================= */
+
 .community-section {
     padding: 80px 5% 100px;
     background-color: #05050a;
@@ -1119,7 +1176,7 @@
     margin: 50px auto 0;
 }
 
-/* Base Community Card */
+
 .comm-card {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1168,9 +1225,7 @@
     transition: all 0.3s ease;
 }
 
-/* --- Brand Specific Hover States --- */
 
-/* Discord Hover (#5865F2) */
 .discord-card:hover {
     transform: translateY(-12px);
     border-color: rgba(88, 101, 242, 0.5);
@@ -1189,7 +1244,7 @@
     letter-spacing: 0.5px;
 }
 
-/* X (Twitter) Hover (#FFFFFF) */
+
 .x-card:hover {
     transform: translateY(-12px);
     border-color: rgba(255, 255, 255, 0.4);
@@ -1208,7 +1263,6 @@
     letter-spacing: 0.5px;
 }
 
-/* GitHub Hover (#2ea043 or Neon Green) */
 .github-card:hover {
     transform: translateY(-12px);
     border-color: rgba(46, 160, 67, 0.5);
@@ -1227,9 +1281,6 @@
     letter-spacing: 0.5px;
 }
 
-/* =========================================
-   Mobile Responsiveness
-========================================= */
 @media (max-width: 900px) {
     .community-grid {
         grid-template-columns: 1fr;

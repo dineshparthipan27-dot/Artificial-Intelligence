@@ -12,7 +12,7 @@
 
     <style>
         :root {
-            /* Futuristic AI Cyberpunk Theme */
+           
             --primary-color: #00f0ff;
             --primary-light: rgba(0, 240, 255, 0.15);
             --primary-dark: #008b99;
@@ -637,7 +637,7 @@
             }
         }
 
-           a {
+        a {
             text-decoration: none;
         }
 
@@ -672,7 +672,7 @@
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-top">
                 <div class="sidebar-header">
-                       <div class="logo-da">
+                    <div class="logo-da">
                         <img src="./asset/lodo.webp" alt="Company Logo" class="logo-img">
                     </div>
                     <button class="close-btn" id="closeSidebar"><i class="fa-solid fa-xmark"></i></button>
@@ -1017,7 +1017,7 @@
     </div>
 
     <script>
-        // Profile Setup
+        
         const emailValue = localStorage.getItem("UserMail");
         const email = emailValue || "admin@nexus.ai";
         const extractedName = email.split("@")[0];
@@ -1027,7 +1027,7 @@
         const welcomeEl = document.querySelector(".welcome-name");
         if (welcomeEl) { welcomeEl.textContent = `| Welcome, ${formattedName} 👋`; }
 
-        // Sidebar Navigation Logic
+        
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('sidebarOverlay');
         const openSidebarBtn = document.getElementById('openSidebar');
@@ -1062,14 +1062,14 @@
             });
         });
 
-        // Logout
+        
         document.getElementById('logoutBtn').addEventListener('click', (e) => {
             e.preventDefault();
             localStorage.removeItem("UserMail");
             window.location.href = "login.html";
         });
 
-        // Chart.js Setup (Updated to Cyan Tech Theme)
+        
         const ctx = document.getElementById('deploymentChart').getContext('2d');
         const deploymentChart = new Chart(ctx, {
             type: 'line',
@@ -1108,7 +1108,7 @@
             }
         });
 
-        // Scroll Animations
+        
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) { entry.target.classList.add('show'); }
@@ -1124,7 +1124,7 @@
         }
         triggerAnimations();
 
-        // Form Validation Logic
+        
         document.getElementById('incidentForm').addEventListener('submit', function (e) {
             e.preventDefault();
 
@@ -1171,7 +1171,7 @@
                 setTimeout(() => {
                     this.reset();
                     formSuccess.style.display = 'none';
-                     window.location.href = "404.html"; // Commented out so it doesn't actually redirect while testing
+                    window.location.href = "404.html"; 
                 }, 500);
 
                 console.log("System Override Logged:", {
