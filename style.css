@@ -1328,7 +1328,7 @@
 }
 
 .plan-features .disabled {
-    color: #555;
+    color: #f6f2f2;
 }
 
 .check {
@@ -1355,9 +1355,9 @@
     transition: all 0.3s ease;
 }
 
-.pricing-card:hover .btn-pricing {
+/* .pricing-card:hover .btn-pricing {
     background: rgba(0, 210, 255, 0.1);
-}
+} */
 
 
 .pricing-card.popular {
@@ -1599,4 +1599,60 @@
 
 .text-center p {
     color: white;
+}
+
+/* =========================================
+   FAQ Accordion Animations
+========================================= */
+
+/* Hide the body content by default */
+.faq-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.175, 0.885, 0.32, 1); /* Smooth bounce effect */
+}
+
+/* Add some spacing inside the text so it looks neat when open */
+.faq-body p {
+    padding: 0 20px 20px 20px;
+    margin: 0;
+    color: #a0a0b5;
+}
+
+/* Ensure the header is clickable and flex-aligned */
+.faq-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none; /* Removes underline from the link */
+    padding: 20px;
+}
+
+/* Optional: Rotate the toggle icon when active (assuming it's a + or arrow) */
+.toggle-icon {
+    transition: transform 0.3s ease;
+    /* Basic Plus Sign using CSS */
+    position: relative;
+    width: 15px;
+    height: 15px;
+}
+
+.toggle-icon::before, .toggle-icon::after {
+    content: '';
+    position: absolute;
+    background-color: #00d2ff;
+    transition: transform 0.3s ease;
+}
+
+.toggle-icon::before { top: 7px; left: 0; width: 15px; height: 2px; }
+.toggle-icon::after { top: 0; left: 7px; width: 2px; height: 15px; }
+
+/* When Active, rotate to make it an 'X' or minus */
+.faq-box.active .toggle-icon::after {
+    transform: rotate(90deg);
+    opacity: 0;
+}
+.faq-box.active .faq-head h3 {
+    color: #00d2ff; /* Highlights the question text */
 }

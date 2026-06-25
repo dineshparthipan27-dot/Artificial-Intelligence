@@ -19,8 +19,8 @@
             <ul class="nav-menu">
                 <li class="nav-item"><a href="index.html" class="nav-link nav-activ">Home</a></li>
                 <li class="nav-item"><a href="about.html" class="nav-link">About </a></li>
-                <li class="nav-item"><a href="features.html" class="nav-link">Features</a></li>
-                <li class="nav-item"><a href="pricing.html" class="nav-link">Pricing</a></li>
+                <li class="nav-item"><a href="features.html" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="pricing.html" class="nav-link">Blog</a></li>
                 <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                 <li class="nav-item"><a href="login.html" class="nav-link btn-contact">Login</a></li>
             </ul>
@@ -538,7 +538,7 @@
                 <div class="faq-accordion">
 
                     <div class="faq-box" data-aos="fade-up" data-aos-delay="100">
-                        <a href="404.html" class="faq-head">
+                        <a  class="faq-head">
                             <h3>Is my enterprise data secure?</h3>
                             <div class="toggle-icon"></div>
                         </a>
@@ -550,7 +550,7 @@
                     </div>
 
                     <div class="faq-box" data-aos="fade-up" data-aos-delay="200">
-                        <a href="404.html" class="faq-head">
+                        <a  class="faq-head">
                             <h3>How long does API integration take?</h3>
                             <div class="toggle-icon"></div>
                         </a>
@@ -562,7 +562,7 @@
                     </div>
 
                     <div class="faq-box" data-aos="fade-up" data-aos-delay="300">
-                        <a href="404.html" class="faq-head">
+                        <a class="faq-head">
                             <h3>Do you offer custom model fine-tuning?</h3>
                             <div class="toggle-icon"></div>
                         </a>
@@ -574,7 +574,7 @@
                     </div>
 
                     <div class="faq-box" data-aos="fade-up" data-aos-delay="400">
-                        <a href="404.html" class="faq-head">
+                        <a class="faq-head">
                             <h3>What happens if I exceed my API limits?</h3>
                             <div class="toggle-icon"></div>
                         </a>
@@ -630,11 +630,11 @@
 
                 <div class="footer-links-col" data-aos="fade-up" data-aos-delay="200">
                     <h4>Platform</h4>
-                    <ul>
+                   <ul>
                         <li><a href="index.html">Home </a></li>
                         <li><a href="about.html">About </a></li>
-                        <li><a href="features.html">Features </a></li>
-                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="features.html">Services </a></li>
+                        <li><a href="pricing.html">Blog</a></li>
                         <li><a href="contact.html">Contact </a></li>
 
                     </ul>
@@ -675,6 +675,37 @@
             </div>
         </div>
     </footer>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Select all FAQ question headers
+        const faqHeads = document.querySelectorAll('.faq-head');
+
+        faqHeads.forEach(head => {
+            head.addEventListener('click', function(e) {
+                // IMPORTANT: This stops the link from jumping to 404.html
+                e.preventDefault(); 
+
+                const currentBox = this.closest('.faq-box');
+                const body = currentBox.querySelector('.faq-body');
+                const isActive = currentBox.classList.contains('active');
+
+                // Auto-Collapse: Close all other open FAQs before opening a new one
+                document.querySelectorAll('.faq-box').forEach(box => {
+                    box.classList.remove('active');
+                    box.querySelector('.faq-body').style.maxHeight = null;
+                });
+
+                // If the clicked one wasn't active, open it smoothly
+                if (!isActive) {
+                    currentBox.classList.add('active');
+                    // dynamically set the height based on content
+                    body.style.maxHeight = body.scrollHeight + "px"; 
+                }
+            });
+        });
+    });
+</script>
 
     <script src="main.js"></script>
 </body>

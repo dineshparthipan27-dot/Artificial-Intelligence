@@ -290,13 +290,13 @@ body {
     font-size: 15px;
     transition: all 0.3s ease;
     display: inline-flex;
-    align-items: center;
+    align-items: start;
 }
 
 
 .footer-links-col a::before {
-    content: '→';
-    margin-right: 8px;
+    /* content: '→'; */
+    /* margin-right: 8px; */
     color: #00d2ff;
     opacity: 0;
     transform: translateX(-10px);

@@ -1263,3 +1263,51 @@ input:checked+.switch-track .switch-puck {
 .text-center {
     color: #00d2ff;
 }
+
+/* =========================================
+   FAQ Section - Animation Styles
+========================================= */
+
+/* Make the question clickable and align the + icon */
+.faq-question {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+/* Hide the answer by default using max-height */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.175, 0.885, 0.32, 1); /* Premium bouncy slide */
+}
+
+/* Add padding inside the answer for neatness */
+.faq-answer p {
+    padding-bottom: 20px;
+    color: #a0a0b5;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Icon rotation animation (+ turns into x) */
+.faq-icon {
+    font-size: 24px;
+    color: #00d2ff;
+    transition: transform 0.4s ease;
+}
+
+/* Active State Styles (When FAQ is open) */
+.faq-item.active .faq-question {
+    color: #00d2ff;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg); /* Rotates the + to look like an X */
+}

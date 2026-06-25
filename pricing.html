@@ -20,8 +20,8 @@
             <ul class="nav-menu">
                 <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="about.html" class="nav-link">About </a></li>
-                <li class="nav-item"><a href="features.html" class="nav-link">Features</a></li>
-                <li class="nav-item"><a href="pricing.html" class="nav-link nav-activ">Pricing</a></li>
+                <li class="nav-item"><a href="features.html" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="pricing.html" class="nav-link nav-activ">Blog</a></li>
                 <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                 <li class="nav-item"><a href="login.html" class="nav-link btn-contact">Login</a></li>
             </ul>
@@ -305,7 +305,7 @@
             <div class="faq-wrapper" data-aos="fade-up" data-aos-delay="100">
 
                 <div class="faq-item">
-                    <a href="404.html" class="faq-question">
+                    <a class="faq-question">
                         What happens if I exceed my monthly API limits?
                         <span class="faq-icon">+</span>
                     </a>
@@ -318,7 +318,7 @@
                 </div>
 
                 <div class="faq-item">
-                    <a href="404.html" class="faq-question">
+                    <a class="faq-question">
                         Is my proprietary data used to train your public models?
                         <span class="faq-icon">+</span>
                     </a>
@@ -330,7 +330,7 @@
                 </div>
 
                 <div class="faq-item">
-                    <a href="404.html" class="faq-question">
+                    <a class="faq-question">
                         Can I switch between monthly and annual billing?
                         <span class="faq-icon">+</span>
                     </a>
@@ -342,7 +342,7 @@
                 </div>
 
                 <div class="faq-item">
-                    <a href="404.html" class="faq-question">
+                    <a class="faq-question">
                         Do you offer a free trial for the Pro plan?
                         <span class="faq-icon">+</span>
                     </a>
@@ -353,7 +353,7 @@
                 </div>
 
                 <div class="faq-item">
-                    <a href="404.html" class="faq-question">
+                    <a class="faq-question">
                         How long does custom model fine-tuning take?
                         <span class="faq-icon">+</span>
                     </a>
@@ -431,8 +431,8 @@
                     <ul>
                         <li><a href="index.html">Home </a></li>
                         <li><a href="about.html">About </a></li>
-                        <li><a href="features.html">Features </a></li>
-                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="features.html">Services </a></li>
+                        <li><a href="pricing.html">Blog</a></li>
                         <li><a href="contact.html">Contact </a></li>
 
                     </ul>
@@ -490,7 +490,39 @@
                 textMonthly.classList.add('active-text');
             }
         });
+ 
     </script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Select all FAQ question links
+        const faqQuestions = document.querySelectorAll('.faq-question');
+
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function(e) {
+                // Prevent default anchor link behavior
+                e.preventDefault(); 
+
+                const currentItem = this.parentElement; // The .faq-item container
+                const answer = currentItem.querySelector('.faq-answer');
+                const isActive = currentItem.classList.contains('active');
+
+                // Step 1: Close all other open FAQs
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-answer').style.maxHeight = null;
+                });
+
+                // Step 2: If the clicked FAQ wasn't active, open it
+                if (!isActive) {
+                    currentItem.classList.add('active');
+                    // Calculate the exact height of the text inside and set it dynamically
+                    answer.style.maxHeight = answer.scrollHeight + "px"; 
+                }
+            });
+        });
+    });
+</script>
     <script src="main.js"></script>
 </body>
 
