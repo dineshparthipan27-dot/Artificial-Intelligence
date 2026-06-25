@@ -1169,3 +1169,134 @@
         text-align: center;
     }
 }
+
+/* =========================================
+   Premium Hero Visuals & Animations
+========================================= */
+
+.hero-visuals-premium {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /* Ensures badges don't get cut off */
+    padding: 20px; 
+}
+
+/* Neon Back-Glow behind the image */
+.hero-image-glow {
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    background: radial-gradient(circle, rgba(0, 210, 255, 0.3), rgba(123, 44, 191, 0.1), transparent 70%);
+    filter: blur(50px);
+    z-index: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulseImageGlow 5s infinite alternate ease-in-out;
+}
+
+@keyframes pulseImageGlow {
+    0% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.9); }
+    100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+/* Main Image Styling */
+.hero-main-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 24px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 1;
+    object-fit: cover;
+}
+
+/* Floating Glass Badges */
+.floating-badge-ui {
+    position: absolute;
+    background: rgba(15, 15, 20, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 18px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 2;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Positioning */
+.badge-top-right { top: 5%; right: -5%; }
+.badge-bottom-left { bottom: 10%; left: -5%; }
+
+/* Badge Internal Styles */
+.badge-icon {
+    font-size: 20px;
+    width: 35px; height: 35px;
+    display: flex; justify-content: center; align-items: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+}
+.glow-blue { box-shadow: 0 0 15px rgba(0, 210, 255, 0.4); border: 1px solid rgba(0, 210, 255, 0.3); }
+.glow-purple { box-shadow: 0 0 15px rgba(123, 44, 191, 0.4); border: 1px solid rgba(123, 44, 191, 0.3); }
+
+.badge-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.badge-value {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.badge-label {
+    color: #a0a0b5;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* --- Smooth Hover / Float Animations --- */
+.floating-hero-img { animation: smoothFloat 6s ease-in-out infinite; }
+.float-delay-1 { animation: smoothFloat 5s ease-in-out infinite reverse; }
+.float-delay-2 { animation: smoothFloat 7s ease-in-out infinite alternate; }
+
+@keyframes smoothFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* =========================================
+   Mobile Responsiveness
+========================================= */
+@media screen and (max-width: 900px) {
+    .hero-main-image {
+        max-width: 350px; /* Scale down image on mobile */
+    }
+    
+    /* Pull the badges inward so they don't break the screen width */
+    .badge-top-right { right: 5%; top: -10px; }
+    .badge-bottom-left { left: 5%; bottom: -10px; }
+    
+    .floating-badge-ui {
+        padding: 8px 12px;
+        gap: 8px;
+    }
+    
+    .badge-icon {
+        width: 28px; height: 28px; font-size: 14px;
+    }
+    
+    .badge-value { font-size: 14px; }
+    .badge-label { font-size: 10px; }
+}
