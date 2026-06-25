@@ -225,6 +225,14 @@
     margin-top: auto;
 }
 
+.section-header{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+}
+
 
 @media screen and (max-width: 900px) {
     .premium-hero-container {

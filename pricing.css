@@ -316,6 +316,12 @@ input:checked+.switch-track .switch-puck {
     }
 }
 
+.section-header{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;}
 
 .pricing-tiers-section {
     padding: 80px 5% 100px;
@@ -1310,4 +1316,8 @@ input:checked+.switch-track .switch-puck {
 
 .faq-item.active .faq-icon {
     transform: rotate(45deg); /* Rotates the + to look like an X */
+}
+
+.highlight{
+    color: white;
 }
